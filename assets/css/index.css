@@ -1,0 +1,789 @@
+@charset "UTF-8";
+
+/* =============================================
+   index.css — 首頁專用樣式
+   全站共用：base.css / header.css / footer.css
+   ============================================= */
+
+/* =============================================
+   Hero Banner
+   ============================================= */
+.hero-banner {
+    height: 70vh;
+    min-height: 500px;
+    overflow: hidden;
+}
+
+.banner-bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+}
+
+.banner-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6));
+    z-index: 1;
+}
+
+/* Hero 半透明色帶 */
+.hero-label {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 80px;
+    padding: 0 20px;
+    gap: 12px;
+    font-size: 36px;
+    letter-spacing: 1.75px;
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.hero-label-dazhi {
+    background: rgba(152, 171, 203, 1);
+}
+
+.hero-label-yongkang {
+    background: rgba(219, 172, 71, 1);
+}
+
+.pin-icon {
+    width: 28px;
+    height: 37px;
+    object-fit: contain;
+}
+
+/* 描述文字覆蓋（大直 + 永康共用）— 桌機 hover 顯示 */
+.hero-desc-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 40%;
+    font-size: 24px;
+    line-height: 1.6;
+    letter-spacing: 1px;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 10px 15px 0;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    display: flex;
+    align-items: flex-start;
+}
+
+.branch-banner:hover .hero-desc-overlay {
+    opacity: 1;
+}
+
+/* --- Banner 區 hover 效果 --- */
+.branch-banner {
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.branch-overlay {
+    transition: opacity 0.3s ease-in-out;
+    pointer-events: none;
+}
+
+@media (min-width: 992px) {
+    .branch-banner .branch-overlay {
+        opacity: 0;
+    }
+
+    .branch-banner:hover .branch-overlay {
+        opacity: 1 !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-banner {
+        height: auto;
+        padding: 60px 0;
+    }
+}
+
+/* =============================================
+   品牌 Logo 卡片
+   ============================================= */
+.logo-card {
+    background-color: white;
+    width: 120px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.logo-card img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.logo-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 768px) {
+    .logo-card {
+        width: 100px;
+        height: 70px;
+    }
+}
+
+/* =============================================
+   商家九宮格
+   ============================================= */
+.merchant-labels div {
+    writing-mode: vertical-lr;
+    letter-spacing: 5px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    min-height: 100px;
+    color: white;
+}
+
+.label-dazhi {
+    background-color: #7A8BA0;
+}
+
+.label-yongkang {
+    background-color: #D4AF37;
+}
+
+.merchant-card {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.merchant-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.merchant-card:hover img {
+    transform: scale(1.1);
+}
+
+.merchant-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.merchant-card:hover .merchant-overlay {
+    opacity: 1;
+}
+
+.merchant-overlay span {
+    color: white;
+    border: 1px solid white;
+    padding: 5px 15px;
+}
+
+/* 手機版左側垂直頁籤 */
+.nav-pills .nav-link {
+    border-radius: 0.375rem;
+}
+
+/* =============================================
+   12 宮格品牌區 (brands-grid) — 桌機 4×3
+   ============================================= */
+.brands-grid-section {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+/* 品牌輪播左右漸層遮罩：頭尾 slide 淡出 */
+#brandSwiper {
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+}
+
+.brands-row {
+    display: flex;
+    gap: 0;
+}
+
+.brand-cell {
+    flex: 1;
+    height: 240px;
+    max-width: 330px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    overflow: hidden;
+    position: relative;
+    perspective: 800px;
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+
+.brand-cell img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 品牌卡片超連結 — 撐滿 cell 且不影響 3D 翻牌 */
+.brand-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+    perspective: 800px;
+}
+
+/* 品牌區背景色（統一白色） */
+.brand-cell.bg-blue {
+    background: #fff;
+}
+
+.brand-cell.bg-gray {
+    background: #fff;
+}
+
+.brand-cell.bg-purple {
+    background: #fff;
+}
+
+.brand-cell.bg-cobalt {
+    background: #fff;
+}
+
+/* 品牌分館標籤 */
+.brand-tag {
+    position: absolute;
+    bottom: 6px;
+    left: 0;
+    font-size: 11px;
+    color: #fff;
+    padding: 3px 8px;
+    letter-spacing: 0.5px;
+    z-index: 3;
+}
+
+.brand-tag.tag-blue {
+    background: #4295CD;
+}
+
+.brand-tag.tag-gold {
+    background: #D3AC22;
+}
+
+/* =============================================
+   翻牌效果 (Flip Card)
+   ============================================= */
+.flip-card {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* JS 控制翻牌：加上 .flipped class 觸發 */
+.flip-card.flipped {
+    transform: rotateY(180deg);
+}
+
+/* 第一張卡片禁止翻轉 */
+.brand-cell.no-flip .flip-card {
+    transform: none !important;
+}
+
+.flip-card-front,
+.flip-card-back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.flip-card-front {
+    z-index: 2;
+}
+
+.flip-card-back {
+    transform: rotateY(180deg);
+    background: transparent;
+    color: #333;
+    padding: 0;
+    text-align: center;
+}
+
+.flip-card-back .brand-name {
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+}
+
+.flip-card-back .brand-branch {
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+/* =============================================
+   品牌/商家區輪播 (Swiper)
+   ============================================= */
+.brand-wrapper {
+    scroll-behavior: smooth;
+    white-space: nowrap;
+}
+
+.brand-item img {
+    height: 60px;
+    filter: grayscale(100%);
+    transition: filter 0.3s ease;
+}
+
+.brand-item:hover img {
+    filter: grayscale(0%);
+}
+
+.brand-logo-square {
+    width: 160px;
+    height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.brand-logo-square:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.brand-logo-square img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.brand-slider-prev,
+.brand-slider-next {
+    z-index: 10;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.brand-slider-prev i,
+.brand-slider-next i {
+    font-weight: 900 !important;
+    -webkit-text-stroke: 1px currentColor;
+    font-size: 1.8rem;
+}
+
+.brand-slider-prev {
+    left: -10px !important;
+}
+
+.brand-slider-next {
+    right: -10px !important;
+}
+
+/* 品牌 badge 無圓角 */
+.brand-item-wrapper .badge {
+    border-radius: 0;
+}
+
+.brand-slider-prev:hover,
+.brand-slider-next:hover {
+    color: #0d6efd !important;
+}
+
+.brand-slider-prev:active,
+.brand-slider-next:active,
+.brand-slider-prev:focus,
+.brand-slider-next:focus {
+    background-color: transparent !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+.brand-swiper {
+    padding: 0 50px;
+}
+
+.brand-swiper .swiper-slide {
+    height: auto;
+}
+
+/* =============================================
+   新聞卡片
+   ============================================= */
+.news-card .card-img-top {
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+}
+
+.news-badge-group .badge {
+    font-weight: 400;
+    font-size: 0.75rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* 全站 badge 無圓角 */
+.badge {
+    border-radius: 0 !important;
+}
+
+/* 讚 / 分享 列 */
+.news-social {
+    font-size: 0.8rem;
+    color: #65676B;
+    padding-top: 8px;
+}
+
+.line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.news-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.news-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+.card-footer {
+    font-size: 0.85rem;
+    padding-top: 0;
+}
+
+/* FB 消息區卡片底圖 */
+.fb-card-post-img {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+}
+
+/* =============================================
+   手機版左側頁籤按鈕
+   ============================================= */
+.mb-tab-list {
+    gap: 0;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.mb-tab-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 76px;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    cursor: pointer;
+    letter-spacing: 4px;
+    transition: opacity 0.2s ease;
+}
+
+.mb-tab-btn:hover,
+.mb-tab-btn:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.mb-tab-dazhi {
+    background-color: #dbdbdb;
+}
+
+.mb-tab-yongkang {
+    background-color: #E2BD6C;
+}
+
+/* active 狀態加深 30% */
+.mb-tab-dazhi.active {
+    background-color: #999999;
+}
+
+.mb-tab-yongkang.active {
+    background-color: #dbac47;
+}
+
+/* =============================================
+   手機版 RWD 微調
+   ============================================= */
+@media (max-width: 991.98px) {
+    .brand-cell {
+        max-width: none;
+        width: 100%;
+        height: auto !important;
+        aspect-ratio: 116 / 84;
+        border: none;
+    }
+
+    /* 九宮格 row 無間距 */
+    .brands-grid-section.d-lg-none .row {
+        --bs-gutter-x: 0;
+        --bs-gutter-y: 0;
+    }
+
+    /* 品牌輪播 logo 手機版 102×102 */
+    .brand-logo-square {
+        width: 102px;
+        height: 102px;
+    }
+
+    .flip-card-back .brand-branch {
+        font-size: 10px;
+    }
+
+    .hero-label {
+        height: 30px;
+        font-size: 16px;
+        padding: 0 10px;
+        justify-content: flex-start;
+        gap: 6px;
+    }
+
+    .pin-icon {
+        width: 10px;
+        height: 13px;
+    }
+}
+
+/* More 按鈕響應式字體 */
+.more-btn {
+    font-size: 0.85rem;
+}
+
+@media (min-width: 992px) {
+    .more-btn {
+        font-size: 1rem;
+    }
+}
+
+/* News 區 badge 移除陰影 */
+.news-section .badge {
+    box-shadow: none !important;
+}
+
+/* News 區文字顏色 */
+.news-section .card-body,
+.news-section .card-body .text-secondary {
+    color: #000 !important;
+}
+
+/* =============================================
+   Inline Style 重構 — 以下為從 HTML inline 移出的樣式
+   ============================================= */
+
+/* --- Hero Banner 區 --- */
+.branch-banner-section {
+    padding-top: 15px;
+}
+
+.branch-banner {
+    overflow: hidden;
+}
+
+.branch-banner img {
+    height: 100%;
+    object-fit: cover;
+}
+
+/* --- 品牌九宮格 — 桌機版間距 --- */
+.brands-grid-desktop {
+    margin-top: 20px;
+}
+
+/* --- 品牌九宮格 — 手機版間距 + cell 高度 --- */
+.brands-grid-mobile {
+    margin-top: 10px;
+}
+
+.brand-cell-mobile {
+    height: 84px;
+}
+
+/* --- 品牌輪播 Badge 顏色 --- */
+.badge-dazhi {
+    background: #4681aa;
+}
+
+.badge-yongkang {
+    background: #dab031;
+}
+
+.badge-notice {
+    background: #cd5453;
+}
+
+/* --- 品牌輪播箭頭 --- */
+.brand-slider-prev,
+.brand-slider-next {
+    z-index: 10;
+}
+
+.brand-slider-prev {
+    left: 0;
+}
+
+.brand-slider-next {
+    right: 0;
+}
+
+/* --- 新聞區背景 --- */
+.news-section {
+    background: #f0f0f0;
+}
+
+/* --- More 按鈕完整樣式 --- */
+.more-btn {
+    background: #fff;
+    color: #000;
+    font-weight: 600;
+    border: none;
+    padding-top: 0 !important;
+    padding-bottom: .1rem !important;
+}
+
+/* --- 新聞卡片 badge --- */
+.news-card .badge-dazhi {
+    background: #4681aa;
+}
+
+.news-card .badge-yongkang {
+    background: #dab031;
+}
+
+.news-card .badge-notice {
+    background: #cd5453;
+}
+
+/* --- 手機版新聞卡片 badge 字體 --- */
+.news-card-mobile .badge {
+    font-size: 0.6rem;
+}
+
+/* --- 手機版新聞卡片 line-clamp --- */
+.line-clamp-mobile {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+}
+
+/* --- Footer Banner 區 --- */
+.footer-banner-section {
+    margin: 30px 0;
+}
+
+.footer-banner-img {
+    height: 690px;
+    object-fit: cover;
+}
+
+.footer-banner-swiper-mobile {
+    margin: 20px 0;
+}
+
+.footer-banner-img-mobile {
+    height: 200px;
+    object-fit: cover;
+}
+
+/* --- Footer Logo 共用 --- */
+.footer-logo {
+    width: 94px;
+    height: 35px;
+    object-fit: contain;
+}
+
+/* --- 回覆 icon 翻轉 --- */
+.reply-flip {
+    transform: scaleX(-1);
+    display: inline-block;
+}
+
+/* --- 手機版新聞卡片字體 --- */
+.news-card-mobile-date {
+    font-size: 0.65rem;
+}
+
+.news-card-mobile-text {
+    font-size: 0.65rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+}
+
+.news-social-mobile {
+    font-size: 0.65rem;
+}
+
+/* --- 手機版新聞 badge 字體 --- */
+.badge-mobile {
+    font-size: 0.6rem;
+}

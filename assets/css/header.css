@@ -1,0 +1,227 @@
+@charset "UTF-8";
+
+/* =============================================
+   header.css — 全站共用 Header / Navigation 樣式
+   共用於 index.html、merchant_detail.html、notice_detail.html 等所有頁面
+   ============================================= */
+
+/* --- 桌機版導航基礎 --- */
+.desktop-nav {
+    padding: 0;
+}
+
+.desktop-nav .navbar-brand {
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+/* 選單列容器 (選單 + 搜尋框同一行) */
+.nav-menu-row {
+    padding-bottom: 10px;
+}
+
+/* 左右佔位區 (flex: 1 讓選單置中) */
+.nav-spacer {
+    flex: 1;
+}
+
+/* 桌機版選單連結樣式 */
+.navbar-nav .nav-link {
+    color: #000 !important;
+    transition: color 0.2s ease;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #126891 !important;
+}
+
+.desktop-nav .navbar-nav {
+    font-size: 22px;
+    gap: 60px;
+    font-weight: 600;
+}
+
+/* 搜尋框容器 (右側空白區居中) */
+.nav-search-wrapper {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.nav-search-bar {
+    width: 200px;
+}
+
+/* 搜尋框共用樣式 (桌機+手機) */
+.search-input {
+    padding-right: 40px;
+}
+
+.search-btn {
+    z-index: 5;
+    right: 8px !important;
+}
+
+.search-icon {
+    color: #a19a95;
+    -webkit-text-stroke: 1px;
+}
+
+/* 選單分隔線 */
+.nav-divider {
+    width: 100vw;
+    height: 1px;
+    background: #000000;
+}
+
+/* --- 手機版導航列 --- */
+.mobile-nav {
+    padding: 0 10px;
+    border-bottom: 1px solid #030000;
+    height: 85px;
+}
+
+.mobile-hamburger {
+    margin-left: 5px;
+}
+
+.mobile-hamburger-icon {
+    font-size: 3rem;
+    -webkit-text-stroke: 2px;
+    color: #959595;
+    line-height: 1;
+}
+
+/* --- 公告輪播樣式 (桌機版，下進上出) --- */
+.marquee-section {
+    height: 100px;
+    font-size: 26px;
+    background: transparent !important;
+    border-top: none !important;
+    overflow: hidden;
+}
+
+.marquee-list {
+    position: relative;
+    height: 100%;
+}
+
+.marquee-item {
+    position: absolute;
+    width: 100%;
+    opacity: 0;
+    transform: translateY(100%);
+    transition: all 0.5s ease-in-out;
+    white-space: normal;
+    line-height: 1.4;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    font-weight: 600;
+}
+
+/* 進場：由下往上滑入 */
+.marquee-item.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 離場：往上滑出 */
+.marquee-item.leaving {
+    opacity: 0;
+    transform: translateY(-100%);
+}
+
+/* --- 手機版底部固定導航 --- */
+.mobile-bottom-nav {
+    z-index: 1030;
+}
+
+.mobile-nav-icon {
+    transition: color 0.2s ease;
+}
+
+.mobile-nav-icon:hover i,
+.mobile-nav-icon:hover span {
+    color: #0d6efd !important;
+}
+
+/* --- 手機版漢堡選單 Offcanvas --- */
+#hkiMobileMenu {
+    width: 100%;
+    background-color: rgba(70, 130, 180, 0.9) !important;
+}
+
+#hkiMobileMenu .offcanvas-close {
+    z-index: 1060;
+    filter: invert(1);
+    transform: scale(2.5);
+    padding: 15px;
+    margin: 15px;
+}
+
+#hkiMobileMenu .nav-link {
+    color: #ffffff;
+}
+
+#hkiMobileMenu .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+#hkiMobileMenu .border-bottom {
+    border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+#hkiMobileMenu .border-top {
+    border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+#hkiMobileMenu hr {
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+#hkiMobileMenu i {
+    color: #ffffff;
+}
+
+#hkiMobileMenu .text-dark {
+    color: #ffffff !important;
+}
+
+/* 手機版搜尋框 */
+.mobile-search-wrapper {
+    width: 60%;
+}
+
+/* --- 手機版跑馬燈 (固定底部) --- */
+.mobile-marquee {
+    height: 40px;
+    line-height: 40px;
+    white-space: nowrap;
+    background-color: rgba(220, 220, 220, 0.8) !important;
+    color: #333;
+}
+
+.mobile-marquee .marquee-wrapper {
+    width: 100%;
+    overflow: hidden;
+}
+
+.mobile-marquee .marquee-content {
+    display: flex;
+    animation: scroll-left 20s linear infinite;
+}
+
+@keyframes scroll-left {
+    0% {
+        transform: translateX(100%);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+.mobile-marquee .marquee-item {
+    flex-shrink: 0;
+}

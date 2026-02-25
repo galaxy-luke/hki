@@ -1,0 +1,84 @@
+@charset "UTF-8";
+
+/* =============================================
+   footer.css — 全站共用 Footer 樣式
+   共用於 index.html、merchant_detail.html、notice_detail.html 等所有頁面
+   ============================================= */
+
+/* --- Footer 淺色版 (桌機) --- */
+.footer-light {
+    background: #c7c7c7;
+    padding: 40px 0;
+}
+
+.footer-light .footer-desc {
+    font-size: 14px;
+    line-height: 1.7;
+    letter-spacing: 0.65px;
+    color: #000;
+    font-weight: 600;
+    margin-bottom: 0;
+}
+
+/* --- Footer sitemap 連結 --- */
+.footer-light a {
+    color: #14191B;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.footer-light a:hover {
+    color: #457B9D;
+}
+
+/* --- Footer 社群圖示 --- */
+.footer-social a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.footer-social a:hover {
+    background-color: rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+}
+
+/* --- Footer 版權列 --- */
+.footer-copyright {
+    font-size: 13px;
+    color: #0D1214;
+    letter-spacing: 0.5px;
+}
+
+/* --- Footer 三欄佈局 --- */
+.footer-col-desc {
+    flex: 7;
+}
+
+.footer-col-sitemap {
+    flex: 1;
+    white-space: nowrap;
+    min-width: fit-content;
+}
+
+.footer-col-contact {
+    flex: 2;
+}
+
+/* --- 手機版 Footer --- */
+.mobile-footer-content {
+    background: #c7c7c7;
+}
+
+.mobile-footer-desc {
+    color: #000;
+    font-weight: 600;
+}
+
+.mobile-footer-contact {
+    font-weight: 600;
+}

@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>虹光 LIVE - 打造質感生活的城市新場景</title>
+    <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <link rel="stylesheet" href="assets/css/header.css">
+    <link rel="stylesheet" href="assets/css/footer.css">
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/index.css">
+</head>
+
+<body>
+
+    <!-- 層級 1: 頂部導航列 (桌機/手機不同) -->
+    <header>
+        <!-- 桌機版導航 -->
+        <nav
+            class="navbar navbar-expand-lg navbar-light container d-none d-lg-flex flex-column position-relative desktop-nav">
+            <a class="navbar-brand" href="index.html">
+                <img src="assets/images/common/logo.png" alt="虹光LIVE" height="50">
+            </a>
+            <div class="d-flex align-items-center w-100 nav-menu-row">
+                <!-- 左側佔位 (與右側等寬) -->
+                <div class="nav-spacer"></div>
+                <!-- 中間選單 -->
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link active" href="index.html">首頁</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">虹光LIVE 大直</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">虹光LIVE 永康</a></li>
+                </ul>
+                <!-- 右側搜尋框 (在右側空白區域居中) -->
+                <div class="nav-search-wrapper">
+                    <div class="input-group nav-search-bar">
+                        <input type="text" id="searchInput" class="form-control rounded-pill border-end-0 search-input"
+                            placeholder="搜尋關鍵字...">
+                        <button id="searchBtn"
+                            class="btn position-absolute end-0 top-50 translate-middle-y border-0 bg-transparent search-btn"
+                            type="button">
+                            <i class="bi bi-search search-icon"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <!-- 選單分隔線 100vw -->
+        <div class="d-none d-lg-block nav-divider"></div>
+
+        <!-- 手機版導航 -->
+        <nav class="navbar navbar-light d-lg-none justify-content-between mobile-nav">
+            <a class="navbar-brand" href="index.html">
+                <img src="assets/images/common/logo.png" alt="虹光LIVE" height="50">
+            </a>
+            <button class="btn border-0 p-0 mobile-hamburger" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#hkiMobileMenu">
+                <i class="bi bi-list mobile-hamburger-icon"></i>
+            </button>
+        </nav>
+
+        <!-- 跑馬燈公告區 (僅桌機顯示) -->
+        <div class="marquee-section overflow-hidden d-none d-lg-block">
+            <div class="container h-100 position-relative">
+                <ul class="marquee-list list-unstyled m-0" id="announcementMarquee">
+                    <li class="marquee-item active">最新公告：因應捷運北環段施工，北安路往敬業二路之路口封閉，請前往大樓之開車顧客注意交通指示</li>
+                    <li class="marquee-item">虹光 LIVE 永康：週末生活藝術節即將開幕，歡迎蒞臨參觀！週末生活藝術節即將開幕
+                        ！週末生活藝術節即將開幕，歡迎蒞臨參觀！週末生活藝術節即將開幕，歡迎蒞臨參觀！週末生活藝術節即將開幕，歡迎蒞臨參觀！
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- 手機版漢堡選單 Offcanvas -->
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="hkiMobileMenu">
+        <!-- 關閉按鈕 (右上角叉叉) -->
+        <button type="button" class="btn-close position-absolute top-0 end-0 offcanvas-close"
+            data-bs-dismiss="offcanvas"></button>
+
+        <div class="offcanvas-body p-0 d-flex flex-column justify-content-center">
+            <!-- 1. 虹光LIVE 大直 -->
+            <div class="border-bottom">
+                <a class="nav-link d-flex align-items-center justify-content-center px-4 py-3" href="#">
+                    <span class="fw-bold fs-4">虹光LIVE 大直</span>
+                </a>
+            </div>
+
+            <!-- 2. 虹光LIVE 永康 -->
+            <div class="border-bottom">
+                <a class="nav-link d-flex align-items-center justify-content-center px-4 py-3" href="#">
+                    <span class="fw-bold fs-4">虹光LIVE 永康</span>
+                </a>
+            </div>
+
+            <!-- 3. 首頁 -->
+            <div class="border-bottom">
+                <a class="nav-link d-flex align-items-center justify-content-center px-4 py-3" href="index.html">
+                    <span class="fw-bold fs-4">首頁</span>
+                </a>
+            </div>
+
+            <!-- 4. 搜尋框 -->
+            <div class="p-3 text-center">
+                <div class="position-relative mx-auto mobile-search-wrapper">
+                    <input type="text" id="mobileSearchInput"
+                        class="form-control rounded-pill border-end-0 search-input" placeholder="搜尋關鍵字...">
+                    <button id="mobileSearchBtn"
+                        class="btn position-absolute end-0 top-50 translate-middle-y border-0 bg-transparent search-btn"
+                        type="button">
+                        <i class="bi bi-search search-icon"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- 5. 社群連結 -->
+            <div class="text-center mt-3">
+                <div class="d-flex justify-content-center gap-3">
+                    <a href="#" class="text-dark text-decoration-none">
+                        <i class="bi bi-facebook fs-3"></i>
+                    </a>
+                    <a href="#" class="text-dark text-decoration-none">
+                        <i class="bi bi-instagram fs-3"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <!-- ========================================
+             層級 2: Hero Banner 區 (左右兩欄各50%)
+             ======================================== -->
+        <section class="branch-banner-section">
+            <div class="row g-0">
+                <!-- 左側: 大直 -->
+                <div class="col-6">
+                    <div class="branch-banner-wrapper">
+                        <div class="branch-banner position-relative">
+                            <img src="assets/images/hero/hero-dazhi.png" class="img-fluid w-100" alt="虹光LIVE 大直">
+                            <!-- 大直描述文字覆蓋 (hover 顯示，僅桌機) -->
+                            <div class="hero-desc-overlay d-none d-lg-flex">
+                                位於劍南路捷運站旁，鄰近美麗華百貨與典華幸福大樓，高端住宅與商業人潮交會，是台北北區極具指標性的生活圈。以虹光集團自有建築資產打造，提供彈性租賃與客製化商業配置，吸引眾多優質品牌進駐。這裡結合精緻餐飲與質感生活風格，成為都會消費者探索品味日常的首選地標。
+                            </div>
+                        </div>
+                        <!-- 下方: Google Map 顏色區塊連結 -->
+                        <a href="https://maps.google.com/?q=台北捷運大直站" target="_blank"
+                            class="hero-label hero-label-dazhi text-white text-decoration-none">
+                            <span>虹光LIVE 大直</span>
+                            <img src="assets/images/common/icon-pin.png" alt="pin" class="pin-icon">
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 右側: 永康 -->
+                <div class="col-6">
+                    <div class="branch-banner-wrapper">
+                        <div class="branch-banner position-relative">
+                            <img src="assets/images/hero/hero-yongkang.png" class="img-fluid w-100" alt="虹光LIVE 永康">
+                            <!-- 永康描述文字覆蓋 (hover 顯示，僅桌機) -->
+                            <div class="hero-desc-overlay d-none d-lg-flex">
+                                座落東門捷運站旁，串聯永康街觀光、美食與文化氛圍，深受國內外高消費客群青睞。虹光集團以獨有建築空間規劃，量身打造品牌營運所需，助力商家在文青慢活街區中精準吸引目標族群。永康館已成為結合特色選品與餐飲的風格據點，與街區共生共榮。
+                            </div>
+                        </div>
+                        <!-- 下方: Google Map 顏色區塊連結 -->
+                        <a href="https://maps.google.com/?q=台北捷運永康站" target="_blank"
+                            class="hero-label hero-label-yongkang text-white text-decoration-none">
+                            <span>虹光LIVE 永康</span>
+                            <img src="assets/images/common/icon-pin.png" alt="pin" class="pin-icon">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================
+             層級 3: 12宮格品牌區 (桌機 4×3 / 手機 2個9宮格 tab切換)
+             ======================================== -->
+        <!-- 桌機版: 4 column × 3 row 翻牌效果 -->
+        <section class="brands-grid-section brands-grid-desktop d-none d-lg-block">
+            <!-- Row 1 -->
+            <div class="brands-row">
+                <div class="brand-cell bg-blue no-flip">
+                    <a href="#brand-hklive" class="brand-link">
+                        <div class="flip-card">
+                            <div class="flip-card-front">
+                                <img src="assets/images/brands/brand-01-hklive.png" alt="虹光LIVE">
+                            </div>
+                            <div class="flip-card-back">
+                                <img src="assets/images/brands/brand-01-hklive.png" alt="虹光LIVE">
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="brand-cell">
+                    <a href="#brand-waulao" class="brand-link">
+                        <div class="flip-card">
+                            <div class="flip-card-front">
+                                <img src="assets/images/brands/brand-02-waulao.png" alt="無老鍋">
+                            </div>
+                            <div class="flip-card-back">
+                                <img src="assets/images/brands/brand-02-waulao-bg.png" alt="無老鍋">
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="brand-cell">
+                    <a href="#brand-dadiao" class="brand-link">
+                        <div class="flip-card">
+                            <div class="flip-card-front">
+                                <img src="assets/images/brands/brand-02-dadiao.png" alt="大碗">
+                            </div>
+                            <div class="flip-card-back">
+                                <img src="assets/images/brands/brand-02-dadiao-bg.png" alt="大碗">
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="brand-cell">
+                    <a href="#brand-chunshuitang" class="brand-link">
+                        <div class="flip-card">
+                            <div class="flip-card-front">
+                                <img src="assets/images/brands/brand-04-chunshuitang.png" alt="春水堂">
+                            </div>
+                            <div class="flip-card-back">
+                                <img src="assets/images/brands/brand-04-chunshuitang-bg.png" alt="春水堂">
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <!-- Row 2 -->
+            <div class="brands-row">
+                <div class="brand-cell">
+                    <a href="#brand-6starji" class="brand-link">
+                        <div class="flip-card">
+                            <div class="flip-card-front">
+                                <img src="assets/images/brands/brand-05-6starji.png" alt="6星集">
+                            </div>
+                            <div class="flip-card-back">
+                                <img src="assets/images/brands/brand-05-6starji-bg.png" alt="6星集">
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="brand-cell">
+                    <a href="#brand-komeda" class="brand-link">
+                        <div class="flip-card">
+                            <div class="flip-card-front">
+                                <img src="assets/images/brands/brand-06-komeda.png" alt="komeda coffee">
+                            </div>
+                            <div class="flip-card-back">
+                                <img src="assets/images/brands/brand-06-komeda-bg.png" alt="komeda coffee">
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="brand-cell bg-purple">
+                    <a href="#brand-lopfait" class="brand-link">
+                        <div class="flip-card">
+                            <div class="flip-card-front">
+                                <img src="assets/images/brands/brand-07-lopfait.png" alt="LOPFAIT">
+                            </div>
+                            <div class="flip-card-back">
+                                <img src="assets/images/brands/brand-07-lopfait-bg.png" alt="LOPFAIT">
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="brand-cell bg-cobalt">
+                    <a href="#brand-pickfish" class="brand-link">
+                        <div class="flip-card">
+                            <div class="flip-card-front">
+                                <img src="assets/images/brands/brand-08-pickfish.png" alt="拾漁">
+                            </div>
+                            <div class="flip-card-back">
+                                <img src="assets/images/brands/brand-08-pickfish-bg.png" alt="拾漁">
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <!-- Row 3 -->
+            <div class="brands-row">
+                <div class="brand-cell">
+                    <a href="#brand-chuhai" class="brand-link">
+                        <div class="flip-card">
+                            <div class="flip-card-front">
+                                <img src="assets/images/brands/brand-09-chuhai.png" alt="初海">
+                            </div>
+                            <div class="flip-card-back">
+                                <img src="assets/images/brands/brand-09-chuhai-bg.png" alt="初海">
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="brand-cell">
+                    <a href="#brand-pd" class="brand-link">
+                        <div class="flip-card">
+                            <div class="flip-card-front">
+                                <img src="assets/images/brands/brand-10-pd.png" alt="DP">
+                            </div>
+                            <div class="flip-card-back">
+                                <img src="assets/images/brands/brand-10-pd-bg.png" alt="DP">
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="brand-cell bg-cobalt">
+                    <a href="#brand-chamonix" class="brand-link">
+                        <div class="flip-card">
+                            <div class="flip-card-front">
+                                <img src="assets/images/brands/brand-11-chamonix.png" alt="夏慕尼">
+                            </div>
+                            <div class="flip-card-back">
+                                <img src="assets/images/brands/brand-11-chamonix-bg.png" alt="夏慕尼">
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="brand-cell">
+                    <a href="#brand-ajoice" class="brand-link">
+                        <div class="flip-card">
+                            <div class="flip-card-front">
+                                <img src="assets/images/brands/brand-12-ajoice.png" alt="ajoice">
+                            </div>
+                            <div class="flip-card-back">
+                                <img src="assets/images/brands/brand-12-ajoice-bg.png" alt="ajoice">
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 手機版: 左側tab切換 大直9宮格 / 永康9宮格 -->
+        <section class="brands-grid-section brands-grid-mobile d-lg-none">
+            <div class="container-fluid px-0">
+                <div class="row g-0 mx-0">
+                    <!-- 左側: 垂直頁籤 -->
+                    <div class="col-auto px-0">
+                        <ul class="nav flex-column nav-pills mb-tab-list" id="brandTabs" role="tablist">
+                            <li class="nav-item">
+                                <button class="mb-tab-btn mb-tab-dazhi active" id="dazhi-brand-tab"
+                                    data-bs-toggle="pill" data-bs-target="#dazhi-brands" type="button">大直</button>
+                            </li>
+                            <li class="nav-item">
+                                <button class="mb-tab-btn mb-tab-yongkang" id="yongkang-brand-tab" data-bs-toggle="pill"
+                                    data-bs-target="#yongkang-brands" type="button">永康</button>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- 右側: 頁籤內容 -->
+                    <div class="col px-0">
+                        <div class="tab-content" id="brandTabContent">
+                            <!-- 大直頁籤: 3×3 九宮格 -->
+                            <div class="tab-pane fade show active" id="dazhi-brands">
+                                <div class="row g-1">
+                                    <div class="col-4">
+                                        <div class="brand-cell brand-cell-mobile">
+                                            <div class="flip-card">
+                                                <div class="flip-card-front"><img
+                                                        src="assets/images/brands/m-brand-06-komeda.png" alt="komeda">
+                                                </div>
+                                                <div class="flip-card-back"><img
+                                                        src="assets/images/brands/m-brand-06-komeda-bg.png"
+                                                        alt="komeda">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="brand-cell brand-cell-mobile">
+                                            <div class="flip-card">
+                                                <div class="flip-card-front"><img
+                                                        src="assets/images/brands/m-brand-04-chunshuitang.png"
+                                                        alt="chunshuitang">
+                                                </div>
+                                                <div class="flip-card-back"><img
+                                                        src="assets/images/brands/m-brand-04-chunshuitang-bg.png"
+                                                        alt="chunshuitang">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="brand-cell brand-cell-mobile">
+                                            <div class="flip-card">
+                                                <div class="flip-card-front"><img
+                                                        src="assets/images/brands/m-brand-01-hklive-hero-dazhi.png"
+                                                        alt="dazhi">
+                                                </div>
+                                                <div class="flip-card-back"><img
+                                                        src="assets/images/brands/m-brand-01-hklive-hero-dazhi.png"
+                                                        alt="dazhi">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="brand-cell brand-cell-mobile">
+                                            <div class="flip-card">
+                                                <div class="flip-card-front"><img
+                                                        src="assets/images/brands/m-brand-16-chamonix.png"
+                                                        alt="chamonix">
+                                                </div>
+                                                <div class="flip-card-back"><img
+                                                        src="assets/images/brands/m-brand-16-chamonix-bg.png"
+                                                        alt="chamonix">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="brand-cell brand-cell-mobile">
+                                            <div class="flip-card">
+                                                <div class="flip-card-front"><img
+                                                        src="assets/images/brands/m-brand-05-6starji.png" alt="6starji">
+                                                </div>
+                                                <div class="flip-card-back"><img
+                                                        src="assets/images/brands/m-brand-05-6starji-bg.png"
+                                                        alt="6starji">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="brand-cell bg-purple brand-cell-mobile">
+                                            <div class="flip-card">
+                                                <div class="flip-card-front"><img
+                                                        src="assets/images/brands/m-brand-07-lopfait.png" alt="lopfait">
+                                                </div>
+                                                <div class="flip-card-back"><img
+                                                        src="assets/images/brands/m-brand-07-lopfait-bg.png"
+                                                        alt="lopfait">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="brand-cell bg-cobalt brand-cell-mobile">
+                                            <div class="flip-card">
+                                                <div class="flip-card-front"><img
+                                                        src="assets/images/brands/m-brand-08-da-wan.png" alt="da-wan">
+                                                </div>
+                                                <div class="flip-card-back"><img
+                                                        src="assets/images/brands/m-brand-08-da-wan-bg.png"
+                                                        alt="da-wan">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="brand-cell brand-cell-mobile">
+                                            <div class="flip-card">
+                                                <div class="flip-card-front"><img
+                                                        src="assets/images/brands/m-brand-02-hklive-hero-dazhi.png"
+                                                        alt="dazhi2">
+                                                </div>
+                                                <div class="flip-card-back"><img
+                                                        src="assets/images/brands/m-brand-02-hklive-hero-dazhi.png"
+                                                        alt="dazhi2">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="brand-cell bg-cobalt brand-cell-mobile">
+                                            <div class="flip-card">
+                                                <div class="flip-card-front"><img
+                                                        src="assets/images/brands/m-brand-09-ajoice.png" alt="ajoice">
+                                                </div>
+                                                <div class="flip-card-back"><img
+                                                        src="assets/images/brands/m-brand-09-ajoice-bg.png"
+                                                        alt="ajoice">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 永康頁籤: 3×3 九宮格 -->
+                            <div class="tab-pane fade" id="yongkang-brands">
+                                <div class="row g-1">
+                                    <div class="col-4">
+                                        <div class="brand-cell brand-cell-mobile">
+                                            <div class="flip-card">
+                                                <div class="flip-card-front"><img
+                                                        src="assets/images/brands/m-brand-10-pd.png" alt="pd">
+                                                </div>
+                                                <div class="flip-card-back"><img
+                                                        src="assets/images/brands/m-brand-10-pd-bg.png" alt="pd">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="brand-cell brand-cell-mobile">
+                                            <div class="flip-card">
+                                                <div class="flip-card-front"><img
+                                                        src="assets/images/brands/m-brand-12-tsuhai.png" alt="tsuhai">
+                                                </div>
+                                                <div class="flip-card-back"><img
+                                                        src="assets/images/brands/m-brand-12-tsuhai-bg.png"
+                                                        alt="tsuhai">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="brand-cell brand-cell-mobile">
+                                            <div class="flip-card">
+                                                <div class="flip-card-front"><img
+                                                        src="assets/images/brands/m-brand-17-pickfish.png"
+                                                        alt="pickfish">
+                                                </div>
+                                                <div class="flip-card-back"><img
+                                                        src="assets/images/brands/m-brand-17-pickfish-bg.png"
+                                                        alt="pickfish">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="brand-cell brand-cell-mobile">
+                                            <div class="flip-card">
+                                                <div class="flip-card-front"><img
+                                                        src="assets/images/brands/m-brand-18-pickfish.png"
+                                                        alt="pickfish2">
+                                                </div>
+                                                <div class="flip-card-back"><img
+                                                        src="assets/images/brands/m-brand-18-pickfish-bg.png"
+                                                        alt="pickfish2">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="brand-cell brand-cell-mobile">
+                                            <div class="flip-card">
+                                                <div class="flip-card-front"><img
+                                                        src="assets/images/brands/m-brand-03-hklive-yongkang.png"
+                                                        alt="yongkang">
+                                                </div>
+                                                <div class="flip-card-back"><img
+                                                        src="assets/images/brands/m-brand-03-hklive-yongkang.png"
+                                                        alt="yongkang">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="brand-cell brand-cell-mobile">
+                                            <div class="flip-card">
+                                                <div class="flip-card-front"><img
+                                                        src="assets/images/brands/m-brand-14-wulao.png" alt="wulao">
+                                                </div>
+                                                <div class="flip-card-back"><img
+                                                        src="assets/images/brands/m-brand-14-wulao-bg.png" alt="wulao">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="brand-cell brand-cell-mobile">
+                                            <div class="flip-card">
+                                                <div class="flip-card-front"><img
+                                                        src="assets/images/brands/m-brand-15-wulao.png" alt="wulao2">
+                                                </div>
+                                                <div class="flip-card-back"><img
+                                                        src="assets/images/brands/m-brand-15-wulao-bg.png" alt="wulao2">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="brand-cell brand-cell-mobile">
+                                            <div class="flip-card">
+                                                <div class="flip-card-front"><img
+                                                        src="assets/images/brands/m-brand-11-pd.png" alt="pd2">
+                                                </div>
+                                                <div class="flip-card-back"><img
+                                                        src="assets/images/brands/m-brand-11-pd-bg.png" alt="pd2">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="brand-cell brand-cell-mobile">
+                                            <div class="flip-card">
+                                                <div class="flip-card-front"><img
+                                                        src="assets/images/brands/m-brand-13-tsuhai.png" alt="tsuhai2">
+                                                </div>
+                                                <div class="flip-card-back"><img
+                                                        src="assets/images/brands/m-brand-13-tsuhai-bg.png"
+                                                        alt="tsuhai2">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================
+             層級 4: 品牌/商家區 (橫向滑動 Swiper)
+             ======================================== -->
+        <section class="brand-slider-section full-width-bg py-4 position-relative">
+
+            <div class="container position-relative">
+                <!-- 左右箭頭 -->
+                <button
+                    class="brand-slider-prev position-absolute top-50 translate-middle-y bg-transparent border-0 p-0"
+                    id="brandPrevBtn">
+                    <i class="bi bi-chevron-left fs-2 text-secondary"></i>
+                </button>
+                <button
+                    class="brand-slider-next position-absolute top-50 translate-middle-y bg-transparent border-0 p-0"
+                    id="brandNextBtn">
+                    <i class="bi bi-chevron-right fs-2 text-secondary"></i>
+                </button>
+
+                <div class="swiper brand-swiper" id="brandSwiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="brand-item-wrapper text-center">
+                                <div class="brand-logo-square bg-white shadow-sm mx-auto mb-2">
+                                    <img src="assets/images/brands/chamonix-carousel.png" alt="夏慕尼">
+                                </div>
+                                <span class="badge badge-dazhi">虹光LIVE大直</span>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="brand-item-wrapper text-center">
+                                <div class="brand-logo-square bg-white shadow-sm mx-auto mb-2">
+                                    <img src="assets/images/brands/chunshuitang-carousel.png" alt="春水堂">
+                                </div>
+                                <span class="badge badge-dazhi">虹光LIVE大直</span>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="brand-item-wrapper text-center">
+                                <div class="brand-logo-square bg-white shadow-sm mx-auto mb-2">
+                                    <img src="assets/images/brands/ajoice-carousel.png" alt="ajoice">
+                                </div>
+                                <span class="badge badge-dazhi">虹光LIVE大直</span>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="brand-item-wrapper text-center">
+                                <div class="brand-logo-square bg-white shadow-sm mx-auto mb-2">
+                                    <img src="assets/images/brands/waulao-carousel.png" alt="無老鍋">
+                                </div>
+                                <span class="badge badge-yongkang">虹光LIVE永康</span>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="brand-item-wrapper text-center">
+                                <div class="brand-logo-square bg-white shadow-sm mx-auto mb-2">
+                                    <img src="assets/images/brands/omakase-carousel.png" alt="初海">
+                                </div>
+                                <span class="badge badge-yongkang">虹光LIVE永康</span>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="brand-item-wrapper text-center">
+                                <div class="brand-logo-square bg-white shadow-sm mx-auto mb-2">
+                                    <img src="assets/images/brands/pickfish-carousel.png" alt="拾漁">
+                                </div>
+                                <span class="badge badge-yongkang">虹光LIVE永康</span>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="brand-item-wrapper text-center">
+                                <div class="brand-logo-square bg-white shadow-sm mx-auto mb-2">
+                                    <img src="assets/images/brands/massage-carousel.png" alt="6星集">
+                                </div>
+                                <span class="badge badge-dazhi">虹光LIVE大直</span>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="brand-item-wrapper text-center">
+                                <div class="brand-logo-square bg-white shadow-sm mx-auto mb-2">
+                                    <img src="assets/images/brands/pd-carousel.png" alt="pd">
+                                </div>
+                                <span class="badge badge-yongkang">虹光LIVE永康</span>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="brand-item-wrapper text-center">
+                                <div class="brand-logo-square bg-white shadow-sm mx-auto mb-2">
+                                    <img src="assets/images/brands/da-wan-carousel.png" alt="大碗">
+                                </div>
+                                <span class="badge badge-dazhi">虹光LIVE大直</span>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="brand-item-wrapper text-center">
+                                <div class="brand-logo-square bg-white shadow-sm mx-auto mb-2">
+                                    <img src="assets/images/brands/komeda-cofee-carousel.png" alt="komeda">
+                                </div>
+                                <span class="badge badge-dazhi">虹光LIVE大直</span>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="brand-item-wrapper text-center">
+                                <div class="brand-logo-square bg-white shadow-sm mx-auto mb-2">
+                                    <img src="assets/images/brands/lopfait-carousel.png" alt="lopfait">
+                                </div>
+                                <span class="badge badge-dazhi">虹光LIVE大直</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================
+             層級 5: 商家 FB 最新消息區
+             ======================================== -->
+        <section class="news-section full-width-bg py-2">
+            <div class="container">
+                <div class="d-flex justify-content-between align-items-end mt-3 mb-3">
+                    <h2 class="h4 fw-bold mb-0">商家FB最新消息</h2>
+                    <a href="#" class="btn rounded-4 px-2 more-btn">more</a>
+                </div>
+
+                <!-- 桌機版: 4欄 -->
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 d-none d-lg-flex">
+                    <!-- 卡片1 -->
+                    <div class="col">
+                        <div class="card h-100 border-0 shadow-sm news-card">
+                            <img src="assets/images/news/fb-1.png" class="card-img-top" alt="春水堂">
+                            <div class="news-badge-group p-2">
+                                <span class="badge badge-dazhi">虹光LIVE大直</span>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title fw-bold">春水堂</h5>
+                                <p class="text-muted small mb-2">2025-11-14</p>
+                                <p class="card-text text-secondary line-clamp-3">
+                                    世界珍珠奶茶發源地，首創以雪克器調製茶飲，將珍珠奶茶推向國際。
+                                </p>
+                            </div>
+                            <div class="news-social px-3 pb-3">
+                                <i class="fa-solid fa-thumbs-up"></i> 0 個讚
+                                <span class="mx-2">|</span>
+                                <i class="fa-solid fa-reply reply-flip"></i> 0
+                                個分享
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 卡片2 -->
+                    <div class="col">
+                        <div class="card h-100 border-0 shadow-sm news-card">
+                            <img src="assets/images/news/fb-2.png" class="card-img-top" alt="夏慕尼">
+                            <div class="news-badge-group p-2">
+                                <span class="badge badge-dazhi">虹光LIVE大直</span>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title fw-bold">春水堂</h5>
+                                <p class="text-muted small mb-2">2025-11-14</p>
+                                <p class="card-text text-secondary line-clamp-3">
+                                    世界珍珠奶茶發源地，首創以雪克器調製茶飲，將珍珠奶茶推向國際。
+                                </p>
+                            </div>
+                            <div class="news-social px-3 pb-3">
+                                <i class="fa-solid fa-thumbs-up"></i> 0 個讚
+                                <span class="mx-2">|</span>
+                                <i class="fa-solid fa-reply reply-flip"></i> 0
+                                個分享
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 卡片3 -->
+                    <div class="col">
+                        <div class="card h-100 border-0 shadow-sm news-card">
+                            <img src="assets/images/news/fb-1.png" class="card-img-top" alt="初海和牛鐵板燒">
+                            <div class="news-badge-group p-2 d-flex gap-1">
+                                <span class="badge badge-yongkang">虹光LIVE永康</span>
+                                <span class="badge badge-notice">公告</span>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title fw-bold">初海和牛鐵板燒</h5>
+                                <p class="text-muted small mb-2">2025-11-14</p>
+                                <p class="card-text text-secondary line-clamp-3">
+                                    嚴選日本A5和牛，搭配主廚精湛鐵板技藝，帶來極致美味體驗。
+                                </p>
+                            </div>
+                            <div class="news-social px-3 pb-3">
+                                <i class="fa-solid fa-thumbs-up"></i> 0 個讚
+                                <span class="mx-2">|</span>
+                                <i class="fa-solid fa-reply reply-flip"></i> 0
+                                個分享
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 卡片4 -->
+                    <div class="col">
+                        <div class="card h-100 border-0 shadow-sm news-card">
+                            <img src="assets/images/news/fb-2.png" class="card-img-top" alt="6星集按摩會館">
+                            <div class="news-badge-group p-2">
+                                <span class="badge badge-dazhi">虹光LIVE大直</span>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title fw-bold">6星集按摩會館</h5>
+                                <p class="text-muted small mb-2">2025-11-14</p>
+                                <p class="card-text text-secondary line-clamp-3">
+                                    結合東方傳統與現代養生，提供頂級按摩放鬆體驗。
+                                </p>
+                            </div>
+                            <div class="news-social px-3 pb-3">
+                                <i class="fa-solid fa-thumbs-up"></i> 0 個讚
+                                <span class="mx-2">|</span>
+                                <i class="fa-solid fa-reply reply-flip"></i> 0
+                                個分享
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 手機版: 2欄 -->
+                <div class="row row-cols-2 g-3 d-lg-none">
+                    <div class="col">
+                        <div class="card h-100 border-0 shadow-sm news-card">
+                            <img src="assets/images/news/m-fb-2.png" class="card-img-top" alt="春水堂">
+                            <div class="news-badge-group p-1">
+                                <span class="badge badge-dazhi badge-mobile">大直</span>
+                            </div>
+                            <div class="card-body p-2">
+                                <h6 class="card-title fw-bold mb-1 small">春水堂</h6>
+                                <p class="text-muted small mb-1 news-card-mobile-date">2025-11-14</p>
+                                <p class="card-text text-secondary mb-0 news-card-mobile-text">
+                                    世界珍珠奶茶發源地，首創以雪克器調製茶飲。
+                                </p>
+                            </div>
+                            <div class="news-social px-2 pb-2 news-social-mobile">
+                                <i class="fa-solid fa-thumbs-up"></i> 0 個讚
+                                <span class="mx-1">|</span>
+                                <i class="fa-solid fa-reply reply-flip"></i> 0
+                                個分享
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card h-100 border-0 shadow-sm news-card">
+                            <img src="assets/images/news/m-fb-3.png" class="card-img-top" alt="夏慕尼">
+                            <div class="news-badge-group p-1">
+                                <span class="badge badge-yongkang badge-mobile">永康</span>
+                            </div>
+                            <div class="card-body p-2">
+                                <h6 class="card-title fw-bold mb-1 small">夏慕尼</h6>
+                                <p class="text-muted small mb-1 news-card-mobile-date">2025-11-14</p>
+                                <p class="card-text text-secondary mb-0 news-card-mobile-text">
+                                    精緻法式鐵板燒，優雅用餐環境與頂級食材的完美結合。
+                                </p>
+                            </div>
+                            <div class="news-social px-2 pb-2 news-social-mobile">
+                                <i class="fa-solid fa-thumbs-up"></i> 0 個讚
+                                <span class="mx-1">|</span>
+                                <i class="fa-solid fa-reply reply-flip"></i> 0
+                                個分享
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card h-100 border-0 shadow-sm news-card">
+                            <img src="assets/images/news/m-fb-2.png" class="card-img-top" alt="初海和牛鐵板燒">
+                            <div class="news-badge-group p-1">
+                                <span class="badge badge-yongkang badge-mobile">永康</span>
+                            </div>
+                            <div class="card-body p-2">
+                                <h6 class="card-title fw-bold mb-1 small">初海和牛鐵板燒</h6>
+                                <p class="text-muted small mb-1 news-card-mobile-date">2025-11-14</p>
+                                <p class="card-text text-secondary mb-0 news-card-mobile-text">
+                                    嚴選日本A5和牛，搭配主廚精湛鐵板技藝。
+                                </p>
+                            </div>
+                            <div class="news-social px-2 pb-2 news-social-mobile">
+                                <i class="fa-solid fa-thumbs-up"></i> 0 個讚
+                                <span class="mx-1">|</span>
+                                <i class="fa-solid fa-reply reply-flip"></i> 0
+                                個分享
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card h-100 border-0 shadow-sm news-card">
+                            <img src="assets/images/news/m-fb-3.png" class="card-img-top" alt="6星集按摩會館">
+                            <div class="news-badge-group p-1">
+                                <span class="badge badge-dazhi badge-mobile">大直</span>
+                            </div>
+                            <div class="card-body p-2">
+                                <h6 class="card-title fw-bold mb-1 small">6星集按摩會館</h6>
+                                <p class="text-muted small mb-1 news-card-mobile-date">2025-11-14</p>
+                                <p class="card-text text-secondary mb-0 news-card-mobile-text">
+                                    結合東方傳統與現代養生，提供頂級按摩放鬆體驗。
+                                </p>
+                            </div>
+                            <div class="news-social px-2 pb-2 news-social-mobile">
+                                <i class="fa-solid fa-thumbs-up"></i> 0 個讚
+                                <span class="mx-1">|</span>
+                                <i class="bi bi-reply-fill reply-flip"></i> 0
+                                個分享
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================
+             層級 6: 夜景 Banner 輪播區（1320px 限寬）
+             ======================================== -->
+        <section class="footer-banner-section position-relative d-none d-lg-block">
+            <div class="swiper footer-banner-swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="assets/images/banner/banner-1.png" class="w-100 footer-banner-img" alt="虹光LIVE 夜景">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="assets/images/banner/banner-2.png" class="w-100 footer-banner-img" alt="虹光LIVE 夜景2">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+
+
+    <!-- ========================================
+         層級 7: 頁腳區 — 桌機版 Footer (淺色版 from tmp_index)
+         ======================================== -->
+    <footer class="footer-light d-none d-lg-block">
+        <div class="container">
+            <div class="row g-4">
+                <!-- 左側: Logo + 公司介紹 (70%) -->
+                <div class="col footer-col-desc">
+                    <img src="assets/images/common/logo.png" alt="虹光LIVE" class="mb-3 footer-logo">
+                    <p class="footer-desc">
+                        虹光LIVE，是虹光集團傾力打造的複合式餐飲娛樂空間，坐落於台北兩大高質感生活商圈——鄰近北捷大直商圈的劍南路站與永康商圈的東門站。我們不只是空間的提供者，更是生活方式的策展人。
+                    </p>
+                    <p class="footer-desc">
+                        不同於一般百貨商場，虹光LIVE由房地產專業背景出發，活化建築資產、精選優質品牌進駐，並以靈活且客製化的商業模式，為商家量身打造最適合的經營空間。這樣的彈性與深度合作，讓每一個品牌都能在虹光LIVE中發揮最大價值，也讓每一位來訪的顧客，都能體驗前所未有的感官享受與生活美學。
+                    </p>
+                    <p class="footer-desc">
+                        我們相信，空間不只是容器，更是連結城市與人的溫度載體。虹光LIVE，邀您一同重新定義都市生活的可能。
+                    </p>
+                </div>
+
+                <!-- 中間: 網站地圖 (10%) -->
+                <div class="col footer-col-sitemap">
+                    <h5 class="fw-bold mb-3">網站地圖</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">虹光LIVE首頁</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">虹光LIVE大直</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">虹光LIVE永康</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">HKI GROUP</a></li>
+                    </ul>
+                </div>
+
+                <!-- 右側: 聯絡我們 (20%) -->
+                <div class="col footer-col-contact">
+                    <h5 class="fw-bold mb-3">聯絡我們</h5>
+                    <p class="text-white mb-1">Email: service@hki.com.tw</p>
+                    <p class="text-white mb-1">Tel: 02-8502-7508</p>
+                    <div class="mt-3">
+                        <a href="#" class="text-dark text-decoration-none me-2">
+                            <i class="fa-brands fa-instagram fs-4"></i>
+                        </a>
+                        <a href="#" class="text-dark text-decoration-none">
+                            <i class="fab fa-facebook-f fs-4"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 手機版 Footer -->
+    <footer class="d-lg-none">
+        <div class="swiper footer-banner-swiper-mobile">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img src="assets/images/banner/m-banner-1.png" class="w-100 footer-banner-img-mobile"
+                        alt="Footer Banner">
+                </div>
+                <div class="swiper-slide">
+                    <img src="assets/images/banner/m-banner-2.png" class="w-100 footer-banner-img-mobile"
+                        alt="Footer Banner">
+                </div>
+            </div>
+        </div>
+        <div class="p-4 mobile-footer-content">
+            <img src="assets/images/common/logo.png" alt="虹光LIVE" class="mb-3 footer-logo">
+            <p class="small mb-3 mobile-footer-desc">
+                虹光LIVE，是虹光集團傾力打造的複合式餐飲娛樂空間，坐落於台北兩大高質感生活商圈——鄰近北捷大直商圈的劍南路站與永康商圈的東門站。我們不只是空間的提供者，更是生活方式的策展人。
+                不同於一般百貨商場，虹光LIVE由房地產專業背景出發，活化建築資產、精選優質品牌進駐，並以靈活且客製化的商業模式，為商家量身打造最適合的經營空間。這樣的彈性與深度合作，讓每一個品牌都能在虹光LIVE中發揮最大價值，也讓每一位來訪的顧客，都能體驗前所未有的感官享受與生活美學。
+                我們相信，空間不只是容器，更是連結城市與人的溫度載體。虹光LIVE，邀您一同重新定義都市生活的可能。
+            </p>
+            <div class="d-flex justify-content-between align-items-start pb-3">
+                <div class="mobile-footer-contact">
+                    <p class="fw-bold mb-1">聯絡我們</p>
+                    <p class="small mb-1">Email: service@hki.com.tw</p>
+                    <p class="small mb-0">Tel: 02-8502-7508</p>
+                </div>
+                <div class="d-flex gap-2">
+                    <a href="#" class="text-dark text-decoration-none">
+                        <i class="fa-brands fa-instagram fs-4"></i>
+                    </a>
+                    <a href="#" class="text-dark text-decoration-none">
+                        <i class="fab fa-facebook-f fs-4"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/index.js"></script>
+
+
+</body>
+
+</html>
