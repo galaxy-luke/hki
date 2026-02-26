@@ -1,0 +1,287 @@
+/* =============================================
+   store-detail.css — 商家詳情頁面專用樣式
+   ============================================= */
+
+/* --- Hero 主圖 (Swiper 輪播) --- */
+.store-hero {
+    max-width: 1320px;
+    margin: 15px auto 0;
+    overflow: hidden;
+    position: relative;
+}
+
+.store-hero-swiper {
+    position: relative;
+}
+
+.store-hero-img {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+/* Hero pagination (右下角，同 footer banner 風格) */
+.store-hero-pagination {
+    position: absolute;
+    bottom: 10px !important;
+    left: auto !important;
+    right: 20px !important;
+    width: auto !important;
+    text-align: right;
+    z-index: 10;
+}
+
+.store-hero-pagination .swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 1;
+}
+
+.store-hero-pagination .swiper-pagination-bullet-active {
+    background: #fff;
+}
+
+/* 品牌 Logo 疊加在主圖左下角 */
+.store-hero-logo {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    z-index: 10;
+    width: 100px;
+    height: 100px;
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.store-hero-logo img {
+    max-width: 85%;
+    max-height: 85%;
+    object-fit: contain;
+}
+
+/* 桌機版隱藏 hero logo（桌機用 store-info 裡面的 logo） */
+@media (min-width: 992px) {
+    .store-hero-logo {
+        display: none;
+    }
+}
+
+/* --- 商家資訊區 --- */
+.store-info {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 30px 20px 20px;
+}
+
+.store-info-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    margin-bottom: 20px;
+}
+
+.store-logo {
+    width: 160px;
+    height: 160px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.store-logo img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+}
+
+.store-brand-name {
+    font-size: 30px;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 16px;
+    font-family: 'Noto Serif TC', '新細明體', serif;
+}
+
+.store-description {
+    font-size: 18px;
+    line-height: 1.8;
+    color: #333;
+    font-family: 'Noto Serif TC', '新細明體', serif;
+    margin-bottom: 24px;
+}
+
+.store-description p {
+    margin-bottom: 16px;
+}
+
+/* --- 聯絡資訊 --- */
+.store-contact-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 16px;
+}
+
+.store-contact-list li {
+    padding: 6px 0;
+    font-size: 16px;
+    color: #333;
+    font-family: 'Noto Serif TC', '新細明體', serif;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.store-contact-list li i {
+    color: #3b7dd8;
+    width: 20px;
+    text-align: center;
+    flex-shrink: 0;
+    margin-top: 3px;
+}
+
+.store-contact-list li a {
+    color: #3b7dd8;
+    text-decoration: none;
+}
+
+.store-contact-list li a:hover {
+    text-decoration: underline;
+}
+
+/* --- 營業時間 --- */
+.store-hours {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #333;
+    font-family: 'Noto Serif TC', '新細明體', serif;
+}
+
+.store-hours-title {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 4px;
+}
+
+.store-hours-title i {
+    color: #3b7dd8;
+    width: 20px;
+    text-align: center;
+    flex-shrink: 0;
+    margin-top: 3px;
+}
+
+.store-hours-list {
+    padding-left: 30px;
+    margin: 0;
+    list-style: none;
+}
+
+.store-hours-list li {
+    padding: 2px 0;
+}
+
+/* --- 社群連結 --- */
+.store-social-links {
+    margin-top: 16px;
+    padding: 8px 0;
+}
+
+.store-social-links a {
+    font-size: 16px;
+    color: #3b7dd8;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+    font-family: 'Noto Serif TC', '新細明體', serif;
+}
+
+.store-social-links a i {
+    width: 20px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.store-social-links a:hover {
+    text-decoration: underline;
+}
+
+/* =============================================
+   RWD — 手機版調整
+   ============================================= */
+@media (max-width: 991.98px) {
+
+    .store-hero {
+        margin-top: 0;
+    }
+
+    .store-info-header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 16px;
+    }
+
+    .store-logo {
+        width: 120px;
+        height: 120px;
+    }
+
+    .store-brand-name {
+        font-size: 24px;
+    }
+
+    .store-description {
+        font-size: 16px;
+        line-height: 1.7;
+    }
+
+    .store-contact-list li {
+        font-size: 14px;
+    }
+
+    .store-hours {
+        font-size: 14px;
+    }
+
+    .store-social-links a {
+        font-size: 14px;
+    }
+
+    /* Hero pagination 手機版縮小 */
+    .store-hero-pagination .swiper-pagination-bullet {
+        width: 5px;
+        height: 5px;
+    }
+
+    .store-hero-pagination {
+        bottom: 5px !important;
+        right: 10px !important;
+    }
+}
+
+@media (max-width: 767.98px) {
+
+    .store-info {
+        padding: 20px 15px 10px;
+    }
+
+    .store-info-header {
+        text-align: left;
+        align-items: flex-start;
+    }
+}

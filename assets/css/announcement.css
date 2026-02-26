@@ -1,0 +1,129 @@
+/* =============================================
+   announcement.css — 公告全文頁面專用樣式
+   ============================================= */
+
+/* --- 標題區塊 (最新公告) --- */
+.announce-title-box {
+    background-color: #f5f5f5;
+    padding: 18px 24px;
+    border-radius: 4px;
+    font-size: 30px;
+    color: #333;
+    font-family: 'Noto Serif TC', '新細明體', serif;
+    margin-bottom: 24px;
+}
+
+/* --- 公告詳情區 --- */
+.announce-detail {
+    margin-bottom: 40px;
+}
+
+.announce-date {
+    font-size: 16px;
+    color: #3b7dd8;
+    margin-bottom: 4px;
+    font-family: 'Noto Serif TC', '新細明體', serif;
+}
+
+.announce-heading {
+    font-size: 30px;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 20px;
+    line-height: 1.5;
+    font-family: 'Noto Serif TC', '新細明體', serif;
+}
+
+.announce-body {
+    font-size: 18px;
+    line-height: 1.8;
+    color: #333;
+    font-family: 'Noto Serif TC', '新細明體', serif;
+}
+
+.announce-body p {
+    margin-bottom: 16px;
+}
+
+.announce-body img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px;
+    margin: 20px 0;
+    display: block;
+}
+
+.announce-body .announce-contact {
+    margin-top: 24px;
+    line-height: 2;
+}
+
+/* --- 相關公告列表 --- */
+.announce-related-list {
+    margin-top: 40px;
+    border-top: 1px solid #000;
+}
+
+.announce-related-item {
+    display: block;
+    padding: 16px 0;
+    border-bottom: 1px solid #000;
+    text-decoration: none;
+    color: inherit;
+    transition: background-color 0.2s ease;
+}
+
+.announce-related-item:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+    text-decoration: none;
+    color: inherit;
+}
+
+.announce-related-date {
+    display: block;
+    font-size: 16px;
+    color: #3b7dd8;
+    margin-bottom: 4px;
+    font-family: 'Noto Serif TC', '新細明體', serif;
+}
+
+.announce-related-title {
+    display: block;
+    font-size: 26px;
+    font-weight: 700;
+    color: #222;
+    font-family: 'Noto Serif TC', '新細明體', serif;
+}
+
+/* =============================================
+   RWD — 手機版調整
+   ============================================= */
+@media (max-width: 767.98px) {
+
+    .announce-title-box {
+        font-size: 20px;
+        padding: 14px 16px;
+    }
+
+    .announce-date {
+        font-size: 14px;
+    }
+
+    .announce-heading {
+        font-size: 22px;
+        margin-bottom: 14px;
+    }
+
+    .announce-body {
+        font-size: 16px;
+        line-height: 1.7;
+    }
+
+    .announce-related-date {
+        font-size: 14px;
+    }
+
+    .announce-related-title {
+        font-size: 18px;
+    }
+}
