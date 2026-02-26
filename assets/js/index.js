@@ -11,20 +11,23 @@
    🔧 可手動調整的參數區 (翻牌動畫設定)
    ============================================= */
 
-/** 每輪翻幾張的循環陣列，例如 [3, 2, 4] 代表第一輪翻3張、第二輪翻2張、第三輪翻4張，然後循環 */
-var FLIP_COUNTS = [3, 2, 4];
+/** 桌機版翻牌設定 (12 宮格) */
+var FLIP_DESKTOP = {
+    counts: [12],         // 一次全翻 12 張
+    stagger: 20,          // 每張間隔 20ms
+    showDuration: 5000,   // 翻面顯示 X 秒
+    interval: 5,          // 每輪間隔 X 秒
+    initialDelay: 2000    // 頁面載入後 X 秒開始
+};
 
-/** 每輪翻牌的間隔秒數 */
-var FLIP_INTERVAL = 5;
-
-/** 同一輪中，每張卡片之間的翻牌延遲（毫秒），產生波浪效果 */
-var FLIP_STAGGER = 200;
-
-/** 卡片翻面後，多少毫秒後自動翻回正面 */
-var FLIP_SHOW_DURATION = 3000;
-
-/** 頁面載入後，多少毫秒開始第一輪翻牌 */
-var FLIP_INITIAL_DELAY = 2000;
+/** 手機版翻牌設定 (9 宮格) */
+var FLIP_MOBILE = {
+    counts: [9],           // 一次全翻 9 張
+    stagger: 20,           // 每張間隔 20ms
+    showDuration: 5000,    // 翻面顯示 X 秒
+    interval: 5,           // 每輪間隔 X 秒
+    initialDelay: 2000     // 頁面載入後 X 秒開始
+};
 
 /* =============================================
    品牌/商家區輪播 (Swiper)
@@ -119,10 +122,10 @@ document.addEventListener('DOMContentLoaded', function () {
     // --- Swiper 初始化 ---
     if (document.getElementById('brandSwiper')) {
         new Swiper('#brandSwiper', {
-            slidesPerView: 3,
+            slidesPerView: 2,
             spaceBetween: 75,
             loop: true,
-            loopAdditionalSlides: 3,
+            loopAdditionalSlides: 2,
             autoplay: {
                 delay: 2000,
                 disableOnInteraction: false,
@@ -162,10 +165,14 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     if (document.querySelector('.footer-banner-swiper')) {
-        new Swiper('.footer-banner-swiper', footerBannerConfig);
+        new Swiper('.footer-banner-swiper', Object.assign({}, footerBannerConfig, {
+            pagination: { el: '.footer-pagination-desktop', clickable: true }
+        }));
     }
     if (document.querySelector('.footer-banner-swiper-mobile')) {
-        new Swiper('.footer-banner-swiper-mobile', footerBannerConfig);
+        new Swiper('.footer-banner-swiper-mobile', Object.assign({}, footerBannerConfig, {
+            pagination: { el: '.footer-pagination-mobile', clickable: true }
+        }));
     }
 
     // --- 12 宮格自動隨機翻牌動畫 ---
@@ -173,26 +180,21 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 /* =============================================
-   12 宮格自動翻牌邏輯（桌機 + 手機版共用）
+   翻牌邏輯（桌機/手機版分別設定）
+   桌機：12 宮格整體翻
+   手機：大直 9 宮格 + 永康 9 宮格 各自獨立翻
    ============================================= */
 function initAutoFlip() {
-    var sections = document.querySelectorAll('.brands-grid-section');
-    if (sections.length === 0) return;
-
-    sections.forEach(function (section) {
-        var allCells = Array.from(section.querySelectorAll('.brand-cell'));
-        // 排除有 .no-flip 的卡片（如第一張）
+    // 共用的翻牌啟動函式
+    function startFlipGroup(container, config) {
+        var allCells = Array.from(container.querySelectorAll('.brand-cell'));
         var flippableCells = allCells.filter(function (cell) {
             return !cell.classList.contains('no-flip');
         });
         if (flippableCells.length === 0) return;
 
-        // 目前在 FLIP_COUNTS 陣列中的索引
         var roundIndex = 0;
 
-        /**
-         * Fisher-Yates 洗牌
-         */
         function shuffle(arr) {
             var a = arr.slice();
             for (var i = a.length - 1; i > 0; i--) {
@@ -204,15 +206,10 @@ function initAutoFlip() {
             return a;
         }
 
-        /**
-         * 執行一輪翻牌
-         */
         function autoFlipRound() {
-            // 從陣列循環取出本輪翻牌數量
-            var count = FLIP_COUNTS[roundIndex % FLIP_COUNTS.length];
+            var count = config.counts[roundIndex % config.counts.length];
             roundIndex++;
 
-            // 確保不超過可翻牌片數
             count = Math.min(count, flippableCells.length);
             var candidates = shuffle(flippableCells).slice(0, count);
 
@@ -220,22 +217,36 @@ function initAutoFlip() {
                 var flipCard = cell.querySelector('.flip-card');
                 if (!flipCard || flipCard.classList.contains('flipped')) return;
 
-                // 每張間隔 FLIP_STAGGER 毫秒依序翻牌
                 setTimeout(function () {
                     flipCard.classList.add('flipped');
 
-                    // FLIP_SHOW_DURATION 毫秒後翻回正面
                     setTimeout(function () {
                         flipCard.classList.remove('flipped');
-                    }, FLIP_SHOW_DURATION);
-                }, idx * FLIP_STAGGER);
+                    }, config.showDuration);
+                }, idx * config.stagger);
             });
         }
 
-        // 頁面載入後 FLIP_INITIAL_DELAY 毫秒開始第一輪
         setTimeout(function () {
             autoFlipRound();
-            setInterval(autoFlipRound, FLIP_INTERVAL * 1000);
-        }, FLIP_INITIAL_DELAY);
-    });
+            setInterval(autoFlipRound, config.interval * 1000);
+        }, config.initialDelay);
+    }
+
+    // 桌機版：整個 section 為一組（12 張）
+    var desktopSection = document.querySelector('.brands-grid-section.d-none.d-lg-block');
+    if (desktopSection) {
+        startFlipGroup(desktopSection, FLIP_DESKTOP);
+    }
+
+    // 手機版：大直、永康各自獨立翻牌（各 9 張）
+    var dazhiPane = document.querySelector('#dazhi-brands');
+    if (dazhiPane) {
+        startFlipGroup(dazhiPane, FLIP_MOBILE);
+    }
+
+    var yongkangPane = document.querySelector('#yongkang-brands');
+    if (yongkangPane) {
+        startFlipGroup(yongkangPane, FLIP_MOBILE);
+    }
 }
