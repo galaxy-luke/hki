@@ -122,8 +122,8 @@ document.addEventListener('DOMContentLoaded', function () {
     // --- Swiper 初始化 ---
     if (document.getElementById('brandSwiper')) {
         new Swiper('#brandSwiper', {
-            slidesPerView: 2,
-            spaceBetween: 20,
+            slidesPerView: 1,
+            spaceBetween: 10,
             loop: true,
             loopAdditionalSlides: 6,
             autoplay: {
@@ -135,7 +135,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 prevEl: '#brandPrevBtn',
             },
             breakpoints: {
-                420: {
+                320: {
+                    slidesPerView: 2,
+                    spaceBetween: 10,
+                },
+                480: {
                     slidesPerView: 3,
                     spaceBetween: 20,
                 },

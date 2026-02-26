@@ -443,6 +443,14 @@
     right: -10px !important;
 }
 
+/* 品牌輪播項目置中對齊 */
+.brand-item-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
 /* 品牌 badge 無圓角 */
 .brand-item-wrapper .badge {
     border-radius: 0;
