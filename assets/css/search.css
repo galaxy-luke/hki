@@ -1,0 +1,200 @@
+/* =============================================
+   search.css — 搜尋結果頁面專用樣式
+   ============================================= */
+
+/* --- 搜尋結果標題區 --- */
+.search-title-box {
+    background-color: #f5f5f5;
+    padding: 18px 24px;
+    border-radius: 4px;
+    font-size: 30px;
+    color: #333;
+    font-family: 'Noto Sans TC', "Microsoft JhengHei", "微軟正黑體", sans-serif;
+}
+
+/* --- 搜尋結果列表區 --- */
+.search-results-list {
+    margin-top: 10px;
+}
+
+.search-result-item {
+    padding: 24px 16px;
+    transition: background-color 0.2s ease;
+    cursor: pointer;
+}
+
+.search-result-item:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+/* 分隔線放在外層連結包裝上 */
+a.search-item-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    border-bottom: 1px solid #000;
+}
+
+a.search-item-link:last-child {
+    border-bottom: none;
+}
+
+a.search-item-link:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* --- 公告型 (Announcement) --- */
+.search-item-announce .search-item-title {
+    font-size: 30px;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 8px;
+    font-family: 'Noto Serif TC', '新細明體', serif;
+}
+
+.search-item-announce .search-item-summary {
+    font-size: 26px;
+    line-height: 1.7;
+    color: #555;
+    font-family: 'Noto Serif TC', '新細明體', serif;
+}
+
+.search-item-announce .search-item-summary .highlight {
+    color: #c0392b;
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+/* --- 圖文共用排版 (FB + Store) --- */
+.search-item-media {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.search-item-thumb {
+    flex-shrink: 0;
+    width: 250px;
+    height: 250px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fafafa;
+}
+
+.search-item-thumb img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.search-item-content {
+    flex: 1;
+    min-width: 0;
+}
+
+/* --- 店家資訊型 (Store Info) --- */
+.search-item-store .search-item-title {
+    font-size: 30px;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 8px;
+    font-family: 'Noto Serif TC', '新細明體', serif;
+}
+
+.search-item-store .search-item-summary {
+    font-size: 26px;
+    line-height: 1.7;
+    color: #555;
+    font-family: 'Noto Serif TC', '新細明體', serif;
+}
+
+/* --- FB 貼文型 (FB Post) --- */
+.search-item-fb .search-item-title {
+    font-size: 30px;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 8px;
+    font-family: 'Noto Serif TC', '新細明體', serif;
+}
+
+.search-item-fb .search-item-summary {
+    font-size: 26px;
+    line-height: 1.7;
+    color: #555;
+    font-family: 'Noto Serif TC', '新細明體', serif;
+}
+
+/* --- 分頁 (Pagination) --- */
+.search-pagination {
+    margin-top: 40px;
+}
+
+.search-pagination .pagination {
+    justify-content: flex-end;
+}
+
+.search-pagination .page-link {
+    color: #555;
+    border-color: #ddd;
+    font-size: 15px;
+    padding: 6px 14px;
+}
+
+.search-pagination .page-item.active .page-link {
+    background-color: #3b7dd8;
+    border-color: #3b7dd8;
+    color: #fff;
+}
+
+.search-pagination .page-link:hover {
+    background-color: #e8f0fe;
+    color: #3b7dd8;
+}
+
+/* =============================================
+   RWD — 手機版調整
+   ============================================= */
+@media (max-width: 767.98px) {
+
+    .search-title-box {
+        font-size: 20px;
+        padding: 14px 16px;
+    }
+
+    .search-result-item {
+        padding: 16px 8px;
+    }
+
+    .search-item-announce .search-item-title,
+    .search-item-store .search-item-title {
+        font-size: 20px;
+    }
+
+    .search-item-announce .search-item-summary,
+    .search-item-store .search-item-summary,
+    .search-item-fb .search-item-summary {
+        font-size: 16px;
+    }
+
+    .search-item-fb .search-item-title {
+        font-size: 20px;
+    }
+
+    .search-item-thumb {
+        width: 90px;
+        height: 90px;
+    }
+
+    .search-item-media {
+        gap: 12px;
+    }
+
+    .search-pagination .pagination {
+        justify-content: center;
+    }
+}

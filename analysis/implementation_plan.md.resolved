@@ -1,0 +1,113 @@
+# 建立虹光LIVE 分館頁面（永康 + 未來大直共用架構）
+
+以 [template.html](file:///d:/laragon/www/hki/template.html) 為基礎，建立 [yongkang.html](file:///d:/laragon/www/hki/yongkang.html) 分館首頁，並將分館頁專屬的 CSS/JS 獨立為共用檔案，讓未來 [dazhi.html](file:///d:/laragon/www/hki/dazhi.html) 可直接共用。
+
+## Proposed Changes
+
+### 共用分館樣式與邏輯
+
+#### [NEW] [branch.css](file:///d:/laragon/www/hki/assets/css/branch.css)
+
+分館頁面共用 CSS，包含以下區塊樣式：
+
+1. **Hero 區** — 滿版建築主圖，左上標題 + 副標文字，右下品牌 Logo 輪播重疊（桌機）
+2. **品牌九宮格** — 手機版 3×3 翻牌九宮格（復用 [index.css](file:///d:/laragon/www/hki/assets/css/index.css) 的 flip-card 概念，但獨立宣告以避免依賴）
+3. **品牌輪播 Swiper** — 桌機版疊在 Hero 右下角、手機版獨立區塊（帶左右箭頭、3 張卡片）
+4. **商場簡介區** — 多段文字排版
+5. **風格影像牆** — Masonry/Grid 拼圖牆（多張不規則圖 + 中央 Logo 格）
+6. **共用 badge / news / footer-banner 樣式** — 從 [index.css](file:///d:/laragon/www/hki/assets/css/index.css) 提取出共通的 badge 色彩、news 卡片、footer-banner 樣式
+
+> [!IMPORTANT]
+> 許多樣式（badge、news-card、footer-banner、flip-card）目前定義在 [index.css](file:///d:/laragon/www/hki/assets/css/index.css) 中。為了讓 [branch.css](file:///d:/laragon/www/hki/assets/css/branch.css) 獨立運作且不與 [index.css](file:///d:/laragon/www/hki/assets/css/index.css) 衝突，我的做法是：
+> - **在 [branch.css](file:///d:/laragon/www/hki/assets/css/branch.css) 中重新宣告**共用樣式（badge 顏色、news 卡片、footer-banner、flip-card 等）
+> - 分館頁面 **不引入** [index.css](file:///d:/laragon/www/hki/assets/css/index.css)，改為引入 [branch.css](file:///d:/laragon/www/hki/assets/css/branch.css)
+> - 這樣 [index.html](file:///d:/laragon/www/hki/index.html) 不受影響，分館頁面也能獨立運作
+
+---
+
+#### [NEW] [branch.js](file:///d:/laragon/www/hki/assets/js/branch.js)
+
+分館頁面共用 JS，包含：
+
+1. **Hero 品牌 Swiper 初始化** — 右下角品牌 Logo 輪播
+2. **品牌九宮格翻牌動畫**（手機版）
+3. **底部 Banner 輪播初始化**（桌機 + 手機）
+4. **品牌獨立 Swiper 初始化**（手機版品牌輪播帶箭頭）
+
+---
+
+### 永康分館頁面
+
+#### [NEW] [yongkang.html](file:///d:/laragon/www/hki/yongkang.html)
+
+基於 [template.html](file:///d:/laragon/www/hki/template.html) 結構，`<main>` 內容替換為以下區塊：
+
+| 順序 | 區塊 | 桌機 | 手機 |
+|---|---|---|---|
+| 1 | Hero Banner + 品牌 Swiper 重疊 | 滿版主圖 + 右下角品牌卡片輪播 | 滿版主圖（無重疊） |
+| 2 | 品牌九宮格 | 隱藏 | 3×3 翻牌九宮格 |
+| 3 | 品牌獨立 Swiper | 隱藏 | 3 張卡片 + 左右箭頭 |
+| 4 | 商場簡介文字 | 三段介紹文字 | 三段介紹文字 |
+| 5 | 風格影像牆 | Masonry 拼圖牆 | 簡化版拼圖牆 |
+| 6 | 商家 FB 最新消息 | 4 欄卡片（共用 template） | 2 欄卡片（共用 template） |
+| 7 | 夜景 Banner 輪播 | 滿版 + pagination（共用 template） | 帶文字疊加（共用 template） |
+
+**Head 引入順序**：[base.css](file:///d:/laragon/www/hki/assets/css/base.css) → [header.css](file:///d:/laragon/www/hki/assets/css/header.css) → [footer.css](file:///d:/laragon/www/hki/assets/css/footer.css) → [branch.css](file:///d:/laragon/www/hki/assets/css/branch.css)（取代 [index.css](file:///d:/laragon/www/hki/assets/css/index.css)）
+**Script 引入**：`bootstrap.bundle.min.js` → `swiper-bundle.min.js` → [main.js](file:///d:/laragon/www/hki/assets/js/main.js) → [branch.js](file:///d:/laragon/www/hki/assets/js/branch.js)（取代 [index.js](file:///d:/laragon/www/hki/assets/js/index.js)）
+
+> [!NOTE]
+> 目前缺少部分圖檔（Hero 主圖、影像牆圖片等），會先使用 previews 資料夾中的切圖素材或已有的 placeholder。您可以之後替換實際圖檔。
+
+---
+
+## Verification Plan
+
+### 瀏覽器驗證
+1. 開啟 `http://hki.test/yongkang.html`（或對應的本地 URL）
+2. **桌機版**：確認 Hero 區、品牌輪播重疊、簡介文字、影像牆、FB 消息、夜景 Banner、Footer 都正確顯示
+3. **手機版**（Chrome DevTools 切換至手機寬度）：確認 Hero 區、九宮格、品牌輪播、FB 消息、夜景 Banner、Footer 正確顯示
+4. 確認 [index.html](file:///d:/laragon/www/hki/index.html) 首頁功能未受影響
+
+### 手動確認
+- 請您在瀏覽器中開啟頁面，比對預覽圖確認佈局是否符合設計
+
+---
+
+# 搜尋結果頁面 (Search Results Page) 實作計畫
+
+此計畫基於 [previews/desktop/search.jpg](file:///d:/laragon/www/hki/previews/desktop/search.jpg) 與 [previews/mobile/search.jpg](file:///d:/laragon/www/hki/previews/mobile/search.jpg) 分析結果。
+
+## 目標
+建立 `search.html` 頁面，顯示使用者的搜尋結果，支援純文字與圖文兩種列表展現形式，並具備 RWD 響應式佈局。
+
+## 檔案變更計畫
+
+### 共用樣式
+#### [NEW] [assets/css/search.css](file:///d:/laragon/www/hki/assets/css/search.css)
+- 處理 `.search-page-main` 容器的整體 padding。
+- `.search-title-box`：淺灰底色與內距，用於顯示「您搜尋”XXXX”的相關結果有:」。
+- `.search-result-item`：設定列表項目底線（border-bottom）及 padding。
+- 圖文項目排版：
+  - 設定左側縮圖的容器大小、灰色邊框與內部圖片 `object-fit: contain` 或 `scale-down`。
+  - 右側內容的 `gap` 與 `margin`。
+- `.search-pagination`：自訂 Pagination 的藍色與灰色字體樣式，符合設計圖。
+
+### 頁面建置
+#### [NEW] [search.html](file:///d:/laragon/www/hki/search.html)
+- 複製 [template.html](file:///d:/laragon/www/hki/template.html) 作為基礎版型（保留 header 與 footer）。
+- 引入 `<link rel="stylesheet" href="assets/css/search.css">`。
+- 在 `<main>` 標籤內加入：
+  1. Title Box
+  2. 項目列表（利用 Bootstrap grid/flex utilities），分為三種版型：
+     - **1. 公告型 (`.search-item-announce`)**：文字結構 (標題 + 摘要)。
+     - **2. FB 貼文型 (`.search-item-fb`)**：左縮圖 + 右文字 (貼文內容)。沒有明顯的大標題，或是標題與內文同級。
+     - **3. 站內店家資訊型 (`.search-item-store`)**：左縮圖 (品牌 Logo) + 右文字 (標題 + 簡述)。
+  3. Pagination (位於底部靠右/置中)。
+
+### 導覽列與首頁更新
+#### [MODIFY] [index.html](file:///d:/laragon/www/hki/index.html)
+- （如果需要）將 Header 與 Modal 內的搜尋表單行動改為 `action="search.html"`。
+#### [MODIFY] [yongkang.html](file:///d:/laragon/www/hki/yongkang.html)
+- 同上，確保搜尋按鈕導向 `search.html`。
+#### [MODIFY] [dazhi.html](file:///d:/laragon/www/hki/dazhi.html)
+- 同上，確保搜尋按鈕導向 `search.html`。

@@ -1,0 +1,44 @@
+# 搜尋結果頁面 (Search Results) 設計分析
+
+## 目標
+分析 [previews/desktop/search.jpg](file:///d:/laragon/www/hki/previews/desktop/search.jpg) 與 [previews/mobile/search.jpg](file:///d:/laragon/www/hki/previews/mobile/search.jpg)，並規劃如何基於現有的 [template.html](file:///d:/laragon/www/hki/template.html) 建構 `search.html` 頁面。
+
+## 整體架構分析
+搜尋結果頁面的結構相對簡單，建立在 [template.html](file:///d:/laragon/www/hki/template.html) 的 Header 和 Footer 之間。主要由以下幾個區塊組成：
+
+1. **搜尋結果標題區 (Search Header)**
+   - 淺灰色背景區塊 (帶有微小圓角與內距)。
+   - 文案格式：「您搜尋”XXXX”的相關結果有:」
+   - 字體較大且有明顯的上下留白。
+
+2. **搜尋結果列表區 (Search Results List)**
+   - 包含多個搜尋結果項目 (Result Items)，彼此之間以淺灰色底線 (`border-bottom`) 分隔。
+   - 項目分為三種主要的排版型態，可透過不同的 CSS class (如 `.search-item-announce`, `.search-item-fb`, `.search-item-store`) 來微調：
+     - **1. 公告型 (Announcement Item)**：
+       - 無縮圖。
+       - 標題 (字體較大，粗體)。
+       - 內文摘要 (包含關鍵字高亮，例如「**超商繳費**」為紅色)。
+     - **2. FB 貼文型 (FB Post Item)**：
+       - 左側：正方形縮圖 (如飲品圖)。
+       - 右側：沒有明顯的獨立粗體標題（或標題與內文融合為一段粗體 `FB標題`），接著是貼文內容摘要。
+     - **3. 站內店家資訊型 (Store Info Item)**：
+       - 左側：正方形品牌商標圖 (帶有灰色邊框與微小圓角，如「大腕燒肉」Logo)。
+       - 右側：標題 (店名，粗體) + 底下接多行簡述。
+   - **RWD 行為**：
+     - 桌機版圖文型為「左方固定寬度縮圖 + 右方彈性內容」的 Flex 排版。
+     - 手機版圖文型縮圖等比例縮小，依然保持「左圖右文」的排版。
+
+3. **分頁組件 (Pagination)**
+   - 位於列表最下方，靠右對齊 (桌機) / 置中對齊 (手機)。
+   - 包含 `Previous`, 頁碼 `1`, `2`, `3`, `Next`。
+   - 樣式應採用 Bootstrap 預設的 Pagination 並做顏色微調 (當前頁面藍底白字，其餘白底藍字或灰字)。
+
+## 實作建議
+- **CSS 檔案**：建議建立 `assets/css/search.css` 來集中管理搜尋頁面的樣式，避免汙染其他頁面。
+- **HTML 結構**：
+  - `<main class="search-page-main container py-5">`
+    - `<div class="search-title-box mb-4">` (標題區)
+    - `<div class="search-results-list">` (列表容器)
+      - `<div class="search-result-item py-4 border-bottom">` (個別項目)
+    - `<nav aria-label="Search results pages" class="mt-5">` (Pagination)
+- **Bootstrap 類別**：可大量運用 `d-flex`, `flex-column`, `flex-md-row`, `gap-3`, `border-bottom` 等 utility classes 來快速排版左圖右文。
