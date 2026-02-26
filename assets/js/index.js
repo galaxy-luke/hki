@@ -123,9 +123,9 @@ document.addEventListener('DOMContentLoaded', function () {
     if (document.getElementById('brandSwiper')) {
         new Swiper('#brandSwiper', {
             slidesPerView: 2,
-            spaceBetween: 75,
+            spaceBetween: 20,
             loop: true,
-            loopAdditionalSlides: 2,
+            loopAdditionalSlides: 6,
             autoplay: {
                 delay: 2000,
                 disableOnInteraction: false,
