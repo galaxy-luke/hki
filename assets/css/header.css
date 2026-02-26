@@ -80,7 +80,7 @@
 
 /* --- 手機版導航列 --- */
 .mobile-nav {
-    padding: 0 10px;
+    padding: 0 20px;
     border-bottom: 1px solid #030000;
     height: 85px;
 }
@@ -188,7 +188,7 @@
     background-position: center;
     background-repeat: no-repeat;
     padding: 0;
-    margin: 20px;
+    margin: 20px 12px;
     opacity: 1;
     filter: none;
 }
