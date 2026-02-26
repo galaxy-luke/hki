@@ -38,7 +38,7 @@
 .desktop-nav .navbar-nav {
     font-size: 22px;
     gap: 60px;
-    font-weight: 600;
+    font-family: 'Noto Serif TC', "PMingLiU", "新細明體", serif;
 }
 
 /* 搜尋框容器 (右側空白區居中) */
@@ -57,13 +57,17 @@
     padding-right: 40px;
 }
 
+.search-input::placeholder {
+    color: #b2b2b2;
+}
+
 .search-btn {
     z-index: 5;
     right: 8px !important;
 }
 
 .search-icon {
-    color: #a19a95;
+    color: #b2b2b2;
     -webkit-text-stroke: 1px;
 }
 
@@ -95,7 +99,7 @@
 /* --- 公告輪播樣式 (桌機版，下進上出) --- */
 .marquee-section {
     height: 100px;
-    font-size: 26px;
+    font-size: 25px;
     background: transparent !important;
     border-top: none !important;
     overflow: hidden;
@@ -117,7 +121,7 @@
     display: flex;
     align-items: center;
     height: 100%;
-    font-weight: 600;
+    font-family: 'Noto Serif TC', "PMingLiU", "新細明體", serif;
 }
 
 /* 進場：由下往上滑入 */
@@ -150,18 +154,48 @@
 #hkiMobileMenu {
     width: 100%;
     background-color: rgba(70, 130, 180, 0.9) !important;
+    /* 覆蓋 Bootstrap 滑動效果，改為淡入淡出 */
+    transform: none !important;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+#hkiMobileMenu.showing,
+#hkiMobileMenu.show:not(.hiding) {
+    opacity: 1;
+    visibility: visible;
+}
+
+#hkiMobileMenu.hiding {
+    opacity: 0;
+    visibility: hidden;
+}
+
+#hkiMobileMenu .offcanvas-body {
+    padding-top: 20vh !important;
+    justify-content: flex-start !important;
 }
 
 #hkiMobileMenu .offcanvas-close {
     z-index: 1060;
-    filter: invert(1);
-    transform: scale(2.5);
-    padding: 15px;
-    margin: 15px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #20597e;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23fff' stroke-width='1.2' stroke-linecap='round'%3e%3cline x1='2' y1='2' x2='14' y2='14'/%3e%3cline x1='14' y1='2' x2='2' y2='14'/%3e%3c/svg%3e");
+    background-size: 30px;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 0;
+    margin: 20px;
+    opacity: 1;
+    filter: none;
 }
 
 #hkiMobileMenu .nav-link {
     color: #ffffff;
+    font-family: 'Noto Serif TC', "PMingLiU", "新細明體", serif;
 }
 
 #hkiMobileMenu .nav-link:hover {
@@ -180,7 +214,7 @@
     border-color: rgba(255, 255, 255, 0.2);
 }
 
-#hkiMobileMenu i {
+#hkiMobileMenu i:not(.search-icon) {
     color: #ffffff;
 }
 

@@ -46,7 +46,6 @@
     font-size: 36px;
     letter-spacing: 1.75px;
     color: #fff;
-    font-weight: 600;
     text-decoration: none;
 }
 
@@ -82,10 +81,23 @@
     transition: opacity 0.4s ease;
     display: flex;
     align-items: flex-start;
+    font-family: 'Noto Serif TC', "PMingLiU", "新細明體", serif;
 }
 
 .branch-banner:hover .hero-desc-overlay {
     opacity: 1;
+}
+
+@media (max-width: 1320px) {
+    .hero-desc-overlay {
+        height: 50%;
+    }
+}
+
+@media (max-width: 1080px) {
+    .hero-desc-overlay {
+        height: 60%;
+    }
 }
 
 /* --- Banner 區 hover 效果 --- */
@@ -356,7 +368,6 @@
 
 .flip-card-back .brand-name {
     font-size: 16px;
-    font-weight: 600;
     letter-spacing: 1px;
     margin-bottom: 6px;
 }
@@ -536,13 +547,13 @@
     text-orientation: upright;
     font-size: 20px;
     font-weight: bold;
-    color: #fff;
+    color: rgba(255, 255, 255, 0.6);
     border: none;
     border-radius: 0;
     padding: 0;
     cursor: pointer;
     letter-spacing: 4px;
-    transition: opacity 0.2s ease;
+    transition: color 0.2s ease;
 }
 
 .mb-tab-btn:hover,
@@ -559,13 +570,15 @@
     background-color: #E2BD6C;
 }
 
-/* active 狀態加深 30% */
+/* active 狀態加深 30% + 文字不透明 */
 .mb-tab-dazhi.active {
     background-color: #999999;
+    color: #fff;
 }
 
 .mb-tab-yongkang.active {
     background-color: #dbac47;
+    color: #fff;
 }
 
 /* =============================================
@@ -665,6 +678,12 @@
 }
 
 /* --- 品牌輪播 Badge 顏色 --- */
+.badge-dazhi,
+.badge-yongkang,
+.badge-notice {
+    font-family: 'Noto Serif TC', "PMingLiU", "新細明體", serif;
+}
+
 .badge-dazhi {
     background: #4681aa;
 }
@@ -700,7 +719,6 @@
 .more-btn {
     background: #fff;
     color: #000;
-    font-weight: 600;
     border: none;
     padding-top: 0 !important;
     padding-bottom: .1rem !important;
@@ -786,4 +804,9 @@
 /* --- 手機版新聞 badge 字體 --- */
 .badge-mobile {
     font-size: 0.6rem;
+}
+
+/* --- 新聞標題字體 (Noto Sans TC) --- */
+.news-card .card-title {
+    font-family: 'Noto Serif TC', "PMingLiU", "新細明體", serif;
 }

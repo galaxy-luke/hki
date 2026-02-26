@@ -9,14 +9,15 @@
 .footer-light {
     background: #c7c7c7;
     padding: 40px 0;
+    font-family: 'Noto Serif TC', '新細明體', serif;
 }
 
 .footer-light .footer-desc {
     font-size: 14px;
+    font-weight: 600;
     line-height: 1.7;
     letter-spacing: 0.65px;
     color: #000;
-    font-weight: 600;
     margin-bottom: 0;
 }
 
@@ -72,6 +73,7 @@
 /* --- 手機版 Footer --- */
 .mobile-footer-content {
     background: #c7c7c7;
+    font-family: 'Noto Serif TC', '新細明體', serif;
 }
 
 .mobile-footer-desc {

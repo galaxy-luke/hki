@@ -7,11 +7,10 @@
 
 /* --- 基礎設定 --- */
 body {
-    font-family: "PMingLiU", "新細明體", serif;
+    font-family: 'Noto Sans TC', "Microsoft JhengHei", "微軟正黑體", sans-serif;
     color: #333;
     background: url('../images/bg.png') no-repeat center top;
     background-size: cover;
-    background-attachment: fixed;
 }
 
 @media (max-width: 991.98px) {
