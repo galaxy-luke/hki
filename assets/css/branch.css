@@ -1,0 +1,678 @@
+@charset "UTF-8";
+
+/* =============================================
+   branch.css — 分館首頁共用樣式（永康 / 大直）
+   全站共用：base.css / header.css / footer.css
+   ============================================= */
+
+/* =============================================
+   Hero Banner（滿版主圖 + 文字 + 品牌輪播重疊）
+   ============================================= */
+.branch-hero {
+    position: relative;
+    max-width: 1320px;
+    margin: 15px auto 0;
+    overflow: hidden;
+}
+
+@media (max-width: 991.98px) {
+    .branch-hero {
+        margin-bottom: 10px;
+    }
+}
+
+.branch-hero-img {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+/* Hero 標題文字覆蓋 */
+.branch-hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 40px 50px;
+    z-index: 2;
+}
+
+.branch-hero-title {
+    font-size: 48px;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 12px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    font-family: 'Noto Serif TC', "PMingLiU", "新細明體", serif;
+}
+
+.branch-hero-subtitle {
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.6;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+    font-family: 'Noto Serif TC', "PMingLiU", "新細明體", serif;
+}
+
+/* Hero 底部品牌輪播（桌機版，疊加在主圖下方）*/
+.branch-hero-brands {
+    z-index: 3;
+    padding: 0 40px;
+    /* Leave space for arrows */
+    position: absolute;
+    bottom: 35px;
+    width: 100%;
+}
+
+.branch-hero-brands .brand-card {
+    width: 160px;
+    height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    overflow: hidden;
+    border: none;
+}
+
+.branch-hero-brands .brand-card img {
+    max-width: 90%;
+    max-height: 70%;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+/* Hero 品牌左右箭頭 */
+.branch-hero-brands .hero-brand-prev,
+.branch-hero-brands .hero-brand-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.8rem;
+    color: #999;
+    z-index: 10;
+}
+
+.branch-hero-brands .hero-brand-prev {
+    left: 0;
+}
+
+.branch-hero-brands .hero-brand-next {
+    right: 0;
+}
+
+.branch-hero-brands .hero-brand-prev i,
+.branch-hero-brands .hero-brand-next i {
+    font-weight: 900 !important;
+    -webkit-text-stroke: 1px currentColor;
+}
+
+.branch-hero-brands .hero-brand-prev:hover,
+.branch-hero-brands .hero-brand-next:hover {
+    color: #0d6efd !important;
+}
+
+/* =============================================
+   商場簡介文字區
+   ============================================= */
+.branch-intro {
+    font-family: 'Noto Serif TC', "PMingLiU", "新細明體", serif;
+    font-size: 24px;
+}
+
+/* =============================================
+   品牌九宮格（桌機 + 手機 3×3 翻牌）
+   桌機版：1320 × 960（每格 440 × 320）
+   手機版：滿版，每格 aspect-ratio: 116/84
+   ============================================= */
+.branch-brands-grid {
+    max-width: 1320px;
+    margin: 0 auto 40px;
+    padding: 0;
+}
+
+/* 用 CSS Grid 確保 9 格等大 */
+.branch-brands-grid .brands-equal-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 320px);
+    gap: 0;
+    width: 100%;
+    max-width: 1320px;
+}
+
+/* 翻牌效果 (Flip Card) — 獨立於 index.css */
+.flip-card {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.flip-card.flipped {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.flip-card-front {
+    z-index: 2;
+}
+
+.flip-card-back {
+    transform: rotateY(180deg);
+    background: transparent;
+    color: #333;
+    padding: 0;
+    text-align: center;
+}
+
+.brand-cell {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    overflow: hidden;
+    position: relative;
+    perspective: 800px;
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+
+.brand-cell img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 桌機版：每格 320px 高（3 列 = 960px） */
+.brand-cell-mobile {
+    width: 100%;
+    height: 100%;
+}
+
+/* 品牌區背景色 */
+.brand-cell.bg-blue {
+    background: #fff;
+}
+
+.brand-cell.bg-purple {
+    background: #fff;
+}
+
+.brand-cell.bg-cobalt {
+    background: #fff;
+}
+
+/* =============================================
+   品牌獨立 Swiper（手機版 + 桌機版疊加 Hero 時也用）
+   ============================================= */
+.branch-brand-swiper-section {
+    max-width: 1320px;
+    margin: 10px auto;
+    padding: 0 0;
+    position: relative;
+}
+
+.branch-brand-swiper-section .brand-logo-square {
+    width: 160px;
+    height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.branch-brand-swiper-section .brand-logo-square:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.branch-brand-swiper-section .brand-logo-square img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.branch-slider-prev,
+.branch-slider-next {
+    z-index: 10;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.branch-slider-prev i,
+.branch-slider-next i {
+    font-weight: 900 !important;
+    -webkit-text-stroke: 1px currentColor;
+    font-size: 1.8rem;
+}
+
+.branch-slider-prev {
+    position: absolute;
+    left: -10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.branch-slider-next {
+    position: absolute;
+    right: -10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.branch-slider-prev:hover,
+.branch-slider-next:hover {
+    color: #0d6efd !important;
+}
+
+.branch-slider-prev:active,
+.branch-slider-next:active,
+.branch-slider-prev:focus,
+.branch-slider-next:focus {
+    background-color: transparent !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+/* 品牌輪播項目置中 */
+.brand-item-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.brand-item-wrapper .badge {
+    border-radius: 0;
+}
+
+/* 品牌輪播漸層遮罩 */
+.branch-brand-swiper {
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+    padding: 0 50px;
+}
+
+.branch-brand-swiper .swiper-slide {
+    height: auto;
+}
+
+/* =============================================
+   商場簡介文字區
+   ============================================= */
+.branch-intro {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 30px 20px;
+}
+
+.branch-intro p {
+    font-size: 24px;
+    line-height: 1.8;
+    color: #333;
+    margin-bottom: 16px;
+    font-family: 'Noto Serif TC', "PMingLiU", "新細明體", serif;
+}
+
+/* =============================================
+   風格影像牆（Masonry Grid）
+   ============================================= */
+.branch-gallery {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 0 20px;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+    gap: 8px;
+}
+
+.gallery-item {
+    overflow: hidden;
+    border-radius: 0;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+/* 大圖佔格 */
+.gallery-item.span-2-col {
+    grid-column: span 2;
+}
+
+.gallery-item.span-2-row {
+    grid-row: span 2;
+}
+
+/* 中央 Logo 格 */
+.gallery-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #E8DFC8;
+}
+
+.gallery-logo img {
+    width: 60%;
+    height: auto;
+    object-fit: contain;
+}
+
+.gallery-logo:hover img {
+    transform: none;
+}
+
+/* =============================================
+   共用 Badge 樣式
+   ============================================= */
+.badge {
+    border-radius: 0 !important;
+}
+
+.badge-dazhi,
+.badge-yongkang,
+.badge-notice {
+    font-family: 'Noto Serif TC', "PMingLiU", "新細明體", serif;
+}
+
+.badge-dazhi {
+    background: #4681aa;
+}
+
+.badge-yongkang {
+    background: #dab031;
+}
+
+.badge-notice {
+    background: #cd5453;
+}
+
+/* 手機版 badge */
+.badge-mobile {
+    font-size: 0.6rem;
+}
+
+/* =============================================
+   新聞卡片（共用）
+   ============================================= */
+.news-section {
+    background: #f0f0f0;
+}
+
+.news-card .card-img-top {
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+}
+
+.news-badge-group .badge {
+    font-weight: 400;
+    font-size: 0.75rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.news-section .badge {
+    box-shadow: none !important;
+}
+
+.news-section .card-body,
+.news-section .card-body .text-secondary {
+    color: #000 !important;
+}
+
+.news-social {
+    font-size: 0.8rem;
+    color: #65676B;
+    padding-top: 8px;
+}
+
+.line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.news-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.news-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+.news-card .card-title {
+    font-family: 'Noto Serif TC', "PMingLiU", "新細明體", serif;
+}
+
+/* 手機版新聞卡片 */
+.news-card-mobile-date {
+    font-size: 0.65rem;
+}
+
+.news-card-mobile-text {
+    font-size: 0.65rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+}
+
+.news-social-mobile {
+    font-size: 0.65rem;
+}
+
+/* More 按鈕 */
+.more-btn {
+    font-size: 0.85rem;
+    background: #fff;
+    color: #000;
+    border: none;
+    padding-top: 0 !important;
+    padding-bottom: .1rem !important;
+}
+
+@media (min-width: 992px) {
+    .more-btn {
+        font-size: 1rem;
+    }
+}
+
+/* 回覆 icon 翻轉 */
+.reply-flip {
+    transform: scaleX(-1);
+    display: inline-block;
+}
+
+/* =============================================
+   Footer Banner 輪播
+   ============================================= */
+.footer-banner-section {
+    margin: 30px 0;
+}
+
+.footer-banner-img {
+    height: 690px;
+    object-fit: cover;
+}
+
+.footer-banner-swiper,
+.footer-banner-swiper-mobile {
+    position: relative;
+}
+
+/* 桌機版 pagination */
+.footer-pagination-desktop {
+    position: absolute;
+    bottom: 10px !important;
+    left: auto !important;
+    right: 20px !important;
+    width: auto !important;
+    text-align: right;
+    z-index: 10;
+}
+
+.footer-pagination-desktop .swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 1;
+}
+
+.footer-pagination-desktop .swiper-pagination-bullet-active {
+    background: #fff;
+}
+
+/* 手機版 pagination */
+.footer-pagination-mobile {
+    position: absolute;
+    bottom: 5px !important;
+    left: auto !important;
+    right: 10px !important;
+    width: auto !important;
+    text-align: right;
+    z-index: 10;
+}
+
+.footer-pagination-mobile .swiper-pagination-bullet {
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 1;
+}
+
+.footer-pagination-mobile .swiper-pagination-bullet-active {
+    background: #fff;
+}
+
+.footer-banner-swiper-mobile {
+    margin: 20px 0;
+}
+
+.footer-banner-img-mobile {
+    height: 200px;
+    object-fit: cover;
+}
+
+/* Footer Logo */
+.footer-logo {
+    width: 94px;
+    height: 35px;
+    object-fit: contain;
+}
+
+/* =============================================
+   RWD：手機版調整
+   ============================================= */
+@media (max-width: 991.98px) {
+
+    /* Hero */
+    .branch-hero-overlay {
+        padding: 20px 20px;
+    }
+
+    .branch-hero-title {
+        font-size: 28px;
+    }
+
+    .branch-hero-subtitle {
+        font-size: 14px;
+    }
+
+    /* Hero 品牌輪播（手機版隱藏，改用獨立區塊） */
+    .branch-hero-brands {
+        display: none;
+    }
+
+    .branch-brands-grid {
+        margin-bottom: 20px;
+    }
+
+    /* 品牌九宮格：手機版改為 aspect-ratio 自適應 */
+    .branch-brands-grid .brands-equal-grid {
+        grid-template-rows: repeat(3, auto);
+    }
+
+    .brand-cell {
+        max-width: none;
+        width: 100%;
+        height: auto !important;
+        aspect-ratio: 116 / 84;
+        border: none;
+    }
+
+    /* 品牌輪播 logo 手機版 */
+    .branch-brand-swiper-section .brand-logo-square {
+        width: 102px;
+        height: 102px;
+    }
+
+    /* 簡介文字 */
+    .branch-intro {
+        padding: 20px 15px;
+    }
+
+    .branch-intro p {
+        font-size: 14px;
+    }
+
+    /* 影像牆 */
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 4px;
+    }
+}
