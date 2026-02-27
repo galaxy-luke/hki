@@ -229,3 +229,19 @@ function initBranchAutoFlip() {
         startFlipGroup(branchGrid, FLIP_BRANCH_MOBILE);
     }
 }
+
+// =============================================
+// Store Hero Swiper (moved from inline HTML)
+// =============================================
+document.addEventListener('DOMContentLoaded', function() {
+    if (document.querySelector('#storeHeroSwiper')) {
+        new Swiper('#storeHeroSwiper', {
+            loop: true,
+            autoplay: { delay: 4000, disableOnInteraction: false },
+            pagination: {
+                el: '.store-hero-pagination',
+                clickable: true,
+            },
+        });
+    }
+});

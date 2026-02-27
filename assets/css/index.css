@@ -882,4 +882,15 @@
 /* --- 新聞標題字體 (Noto Sans TC) --- */
 .news-card .card-title {
     font-family: 'Noto Serif TC', "PMingLiU", "新細明體", serif;
-}
+}/ *  
+ - - -  
+ U t i l i t y  
+ C l a s s e s  
+ - - -  
+ * /  
+ . c u r s o r - d e f a u l t  
+   c u r s o r :   d e f a u l t   ! i m p o r t a n t ;    
+ 
+
+/* Utility Classes */
+.cursor-default { cursor: default !important; }
