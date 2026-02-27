@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJOICE - 虹光LIVE 大直</title>
+    <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&family=Noto+Serif+TC:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/header.css">
+    <link rel="stylesheet" href="assets/css/footer.css">
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/branch.css">
+    <link rel="stylesheet" href="assets/css/store-detail.css">
+</head>
+
+<body>
+
+    <!-- 層級 1: 頂部導航列 (桌機/手機不同) -->
+    <header>
+        <!-- 桌機版導航 -->
+        <nav
+            class="navbar navbar-expand-lg navbar-light container d-none d-lg-flex flex-column position-relative desktop-nav">
+            <a class="navbar-brand" href="index.html">
+                <img src="assets/images/common/logo.png" alt="虹光LIVE" height="50">
+            </a>
+            <div class="d-flex align-items-center w-100 nav-menu-row">
+                <!-- 左側佔位 (與右側等寬) -->
+                <div class="nav-spacer"></div>
+                <!-- 中間選單 -->
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="index.html">首頁</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="dazhi.html">虹光LIVE 大直</a></li>
+                    <li class="nav-item"><a class="nav-link" href="yongkang.html">虹光LIVE 永康</a></li>
+                </ul>
+                <!-- 右側搜尋框 (在右側空白區域居中) -->
+                <div class="nav-search-wrapper">
+                    <div class="input-group nav-search-bar">
+                        <input type="text" id="searchInput" class="form-control rounded-pill border-end-0 search-input"
+                            placeholder="搜尋關鍵字...">
+                        <button id="searchBtn"
+                            class="btn position-absolute end-0 top-50 translate-middle-y border-0 bg-transparent search-btn"
+                            type="button">
+                            <i class="bi bi-search search-icon"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <!-- 選單分隔線 100vw -->
+        <div class="d-none d-lg-block nav-divider"></div>
+
+        <!-- 手機版導航 -->
+        <nav class="navbar navbar-light d-lg-none justify-content-between mobile-nav">
+            <a class="navbar-brand" href="index.html">
+                <img src="assets/images/common/logo.png" alt="虹光LIVE" height="50">
+            </a>
+            <button class="btn border-0 p-0 mobile-hamburger" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#hkiMobileMenu">
+                <i class="bi bi-list mobile-hamburger-icon"></i>
+            </button>
+        </nav>
+
+        <!-- 跑馬燈公告區 (僅桌機顯示) -->
+        <div class="marquee-section overflow-hidden d-none d-lg-block">
+            <div class="container h-100 position-relative">
+                <ul class="marquee-list list-unstyled m-0" id="announcementMarquee">
+                    <li class="marquee-item active">最新公告：因應捷運北環段施工，北安路往敬業二路之路口封閉，請前往大樓之開車顧客注意交通指示</li>
+                    <li class="marquee-item">虹光 LIVE 大直：週末生活藝術節即將開幕，歡迎蒞臨參觀！</li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- 手機版漢堡選單 Offcanvas -->
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="hkiMobileMenu">
+        <!-- 關閉按鈕 (右上角叉叉) -->
+        <button type="button" class="btn-close position-absolute top-0 end-0 offcanvas-close"
+            data-bs-dismiss="offcanvas"></button>
+
+        <div class="offcanvas-body p-0 d-flex flex-column justify-content-center">
+            <!-- 1. 虹光LIVE 大直 -->
+            <div class="border-bottom">
+                <a class="nav-link d-flex align-items-center justify-content-center px-4 py-3" href="dazhi.html">
+                    <span class="fw-bold fs-4">虹光LIVE 大直</span>
+                </a>
+            </div>
+
+            <!-- 2. 虹光LIVE 永康 -->
+            <div class="border-bottom">
+                <a class="nav-link d-flex align-items-center justify-content-center px-4 py-3" href="yongkang.html">
+                    <span class="fw-bold fs-4">虹光LIVE 永康</span>
+                </a>
+            </div>
+
+            <!-- 3. 首頁 -->
+            <div class="border-bottom">
+                <a class="nav-link d-flex align-items-center justify-content-center px-4 py-3" href="index.html">
+                    <span class="fw-bold fs-4">首頁</span>
+                </a>
+            </div>
+
+            <!-- 4. 搜尋框 -->
+            <div class="p-3 text-center">
+                <div class="position-relative mx-auto mobile-search-wrapper">
+                    <input type="text" id="mobileSearchInput"
+                        class="form-control rounded-pill border-end-0 search-input" placeholder="搜尋關鍵字...">
+                    <button id="mobileSearchBtn"
+                        class="btn position-absolute end-0 top-50 translate-middle-y border-0 bg-transparent search-btn"
+                        type="button">
+                        <i class="bi bi-search search-icon"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- 5. 社群連結 -->
+            <div class="text-center mt-3">
+                <div class="d-flex justify-content-center gap-3">
+                    <a href="#" class="text-dark text-decoration-none">
+                        <i class="fa-brands fa-instagram fs-3"></i>
+                    </a>
+                    <a href="#" class="text-dark text-decoration-none">
+                        <i class="fab fa-facebook-f fs-3"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <!-- ========================================
+             Hero 主圖 (Swiper 輪播 + 品牌 Logo 疊加)
+             ======================================== -->
+        <section class="store-hero">
+            <div class="swiper store-hero-swiper" id="storeHeroSwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="assets/images/rest/dz-ajoice-1.png" class="store-hero-img" alt="AJOICE 店面照片 1">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="assets/images/rest/dz-ajoice-2.png" class="store-hero-img" alt="AJOICE 店面照片 2">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="assets/images/rest/dz-ajoice-3.png" class="store-hero-img" alt="AJOICE 店面照片 3">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="assets/images/rest/dz-ajoice-4.png" class="store-hero-img" alt="AJOICE 店面照片 4">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="assets/images/rest/dz-ajoice-5.png" class="store-hero-img" alt="AJOICE 店面照片 5">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="assets/images/rest/dz-ajoice-6.png" class="store-hero-img" alt="AJOICE 店面照片 6">
+                    </div>
+                </div>
+                <div class="swiper-pagination store-hero-pagination"></div>
+            </div>
+            <!-- 品牌 Logo 疊加在主圖左下角 -->
+            <div class="store-hero-logo">
+                <img src="assets/images/rest/ajoice.png" alt="AJOICE Logo">
+            </div>
+        </section>
+
+        <!-- ========================================
+             商家資訊區
+             ======================================== -->
+        <section class="store-info">
+            <div class="store-info-header">
+                <!-- 桌機版 Logo (手機版隱藏，改用 hero 疊加的) -->
+                <div class="store-logo d-none d-lg-flex">
+                    <img src="assets/images/rest/ajoice.png" alt="AJOICE Logo">
+                </div>
+                <div class="store-info-content">
+                    <h1 class="store-brand-name">AJOICE</h1>
+<div class="store-description">
+    <p>ajoice藝術與運動結合的健身空間：主打「你的快樂對 AJOICE 很重要」的理念。提供多樣化的團體課程，特別推薦歐美最流行的 Barre 課程，結合芭蕾、瑜珈和皮拉提斯，著重核心訓練、肌力與線條雕塑，讓體態更美更有自信。</p>
+    <p>透過創新科技和客製化的尊榮運動體驗，提供個性化的訓練、科技應用、營養指導和基因檢測等綜合方案 ; 量身定制每個人的訓練計劃，讓人們充分發揮潛力，實現充實而豐盛的生活之樂，回歸愉悅深邃的原點，跳脫傳統的運動健身框架，找回身心靈的優雅平衡。</p>
+    <p>致力於滿足現代人對於生活品質的追求，不斷與客人建立友好的信任關係。</p>
+    <p>在運動的過程中給予充足的陪伴和安心感</p>
+    <p>ajoice積極創造一個永續的健康社群，在這裡能夠喚起對生活的熱情，也找到成就感與自我價值，讓自信與愉悅隨之在日常生活發揮。</p>
+</div>
+
+<ul class="store-contact-list">
+    <li><i class="bi bi-telephone-fill"></i><span>電話：02-85023608</span></li>
+    <li><i class="bi bi-envelope-fill"></i><span>Email：<a href="mailto:ajoice.fitness@gmail.com">ajoice.fitness@gmail.com</a></span></li>
+    <li><i class="bi bi-geo-alt-fill"></i><span>地址：台北市中山區敬業二路199號6樓</span></li>
+</ul>
+
+<div class="store-hours">
+    <div class="store-hours-title"><i class="bi bi-clock-fill"></i><span>營業時間：</span></div>
+    <ul class="store-hours-list">
+        <li>週一 (MON) 9 AM–10 PM、週二(TUE) 9 AM-10 PM</li>
+        <li>週三(WED) 9 AM-10 PM、週四(THU) 9 AM–10 PM</li>
+        <li>週五(FRI) 9 AM–8:30 PM、週六(SAT) 9 AM-8:30 PM</li>
+        <li>週日(SUN) 9 AM–9:30 PM</li>
+    </ul>
+</div>
+
+<div class="store-social-links">
+    <a href="https://ajoice.com/" target="_blank"><i class="bi bi-globe"></i><span>官方網站</span></a>
+    <a href="https://www.facebook.com/ajoice.tw" target="_blank"><i class="bi bi-facebook"></i><span>FB連結</span></a>
+    <a href="https://www.instagram.com/ajoice.tw" target="_blank"><i class="bi bi-instagram"></i><span>IG連結</span></a>
+</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================
+             商家 FB 最新消息區 (複用 dazhi.html 的 news-section)
+             ======================================== -->
+        <section class="news-section full-width-bg py-2">
+            <div class="container">
+                <div class="d-flex justify-content-between align-items-end mt-3 mb-3">
+                    <h2 class="h4 fw-bold mb-0">商家FB最新消息</h2>
+                    <a href="#" class="btn rounded-4 px-2 more-btn">more</a>
+                </div>
+
+                <!-- 桌機版: 4欄 -->
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 d-none d-lg-flex">
+                    <!-- 卡片1 -->
+                    <div class="col">
+                        <div class="card h-100 border-0 shadow-sm news-card">
+                            <img src="assets/images/news/fb-1.png" class="card-img-top" alt="春水堂">
+                            <div class="news-badge-group p-2">
+                                <span class="badge badge-dazhi">虹光LIVE大直</span>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title fw-bold">春水堂</h5>
+                                <p class="text-muted small mb-2">2025-11-14</p>
+                                <p class="card-text text-secondary line-clamp-3">
+                                    世界珍珠奶茶發源地，首創以雪克器調製茶飲，將珍珠奶茶推向國際。
+                                </p>
+                            </div>
+                            <div class="news-social px-3 pb-3">
+                                <i class="fa-solid fa-thumbs-up"></i> 0 個讚
+                                <span class="mx-2">|</span>
+                                <i class="fa-solid fa-reply reply-flip"></i> 0
+                                個分享
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 卡片2 -->
+                    <div class="col">
+                        <div class="card h-100 border-0 shadow-sm news-card">
+                            <img src="assets/images/news/fb-2.png" class="card-img-top" alt="夏慕尼">
+                            <div class="news-badge-group p-2">
+                                <span class="badge badge-dazhi">虹光LIVE大直</span>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title fw-bold">夏慕尼</h5>
+                                <p class="text-muted small mb-2">2025-11-14</p>
+                                <p class="card-text text-secondary line-clamp-3">
+                                    精緻法式鐵板燒，優雅用餐環境與頂級食材的完美結合。
+                                </p>
+                            </div>
+                            <div class="news-social px-3 pb-3">
+                                <i class="fa-solid fa-thumbs-up"></i> 0 個讚
+                                <span class="mx-2">|</span>
+                                <i class="fa-solid fa-reply reply-flip"></i> 0
+                                個分享
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 卡片3 -->
+                    <div class="col">
+                        <div class="card h-100 border-0 shadow-sm news-card">
+                            <img src="assets/images/news/fb-1.png" class="card-img-top" alt="初魚和牛鐵板燒">
+                            <div class="news-badge-group p-2 d-flex gap-1">
+                                <span class="badge badge-dazhi">虹光LIVE大直</span>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title fw-bold">初魚和牛鐵板燒</h5>
+                                <p class="text-muted small mb-2">2025-11-14</p>
+                                <p class="card-text text-secondary line-clamp-3">
+                                    頂級和牛專門店，職人專業代烤，帶來極致美味體驗。
+                                </p>
+                            </div>
+                            <div class="news-social px-3 pb-3">
+                                <i class="fa-solid fa-thumbs-up"></i> 0 個讚
+                                <span class="mx-2">|</span>
+                                <i class="fa-solid fa-reply reply-flip"></i> 0
+                                個分享
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 卡片4 -->
+                    <div class="col">
+                        <div class="card h-100 border-0 shadow-sm news-card">
+                            <img src="assets/images/news/fb-2.png" class="card-img-top" alt="6星集按摩會館">
+                            <div class="news-badge-group p-2">
+                                <span class="badge badge-dazhi">虹光LIVE大直</span>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title fw-bold">6星集按摩會館</h5>
+                                <p class="text-muted small mb-2">2025-11-14</p>
+                                <p class="card-text text-secondary line-clamp-3">
+                                    結合東方傳統與現代養生，提供頂級按摩放鬆體驗。
+                                </p>
+                            </div>
+                            <div class="news-social px-3 pb-3">
+                                <i class="fa-solid fa-thumbs-up"></i> 0 個讚
+                                <span class="mx-2">|</span>
+                                <i class="fa-solid fa-reply reply-flip"></i> 0
+                                個分享
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 手機版: 2欄 -->
+                <div class="row row-cols-2 g-3 d-lg-none">
+                    <div class="col">
+                        <div class="card h-100 border-0 shadow-sm news-card">
+                            <img src="assets/images/news/m-fb-2.png" class="card-img-top" alt="春水堂">
+                            <div class="news-badge-group p-1">
+                                <span class="badge badge-dazhi badge-mobile">大直</span>
+                            </div>
+                            <div class="card-body p-2">
+                                <h6 class="card-title fw-bold mb-1 small">春水堂</h6>
+                                <p class="text-muted small mb-1 news-card-mobile-date">2025-11-14</p>
+                                <p class="card-text text-secondary mb-0 news-card-mobile-text">
+                                    世界珍珠奶茶發源地，首創以雪克器調製茶飲。
+                                </p>
+                            </div>
+                            <div class="news-social px-2 pb-2 news-social-mobile">
+                                <i class="fa-solid fa-thumbs-up"></i> 0 個讚
+                                <span class="mx-1">|</span>
+                                <i class="fa-solid fa-reply reply-flip"></i> 0
+                                個分享
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card h-100 border-0 shadow-sm news-card">
+                            <img src="assets/images/news/m-fb-3.png" class="card-img-top" alt="夏慕尼">
+                            <div class="news-badge-group p-1">
+                                <span class="badge badge-dazhi badge-mobile">大直</span>
+                            </div>
+                            <div class="card-body p-2">
+                                <h6 class="card-title fw-bold mb-1 small">夏慕尼</h6>
+                                <p class="text-muted small mb-1 news-card-mobile-date">2025-11-14</p>
+                                <p class="card-text text-secondary mb-0 news-card-mobile-text">
+                                    精緻法式鐵板燒，優雅用餐環境與頂級食材的完美結合。
+                                </p>
+                            </div>
+                            <div class="news-social px-2 pb-2 news-social-mobile">
+                                <i class="fa-solid fa-thumbs-up"></i> 0 個讚
+                                <span class="mx-1">|</span>
+                                <i class="fa-solid fa-reply reply-flip"></i> 0
+                                個分享
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card h-100 border-0 shadow-sm news-card">
+                            <img src="assets/images/news/m-fb-2.png" class="card-img-top" alt="初魚和牛鐵板燒">
+                            <div class="news-badge-group p-1">
+                                <span class="badge badge-dazhi badge-mobile">大直</span>
+                            </div>
+                            <div class="card-body p-2">
+                                <h6 class="card-title fw-bold mb-1 small">初魚和牛鐵板燒</h6>
+                                <p class="text-muted small mb-1 news-card-mobile-date">2025-11-14</p>
+                                <p class="card-text text-secondary mb-0 news-card-mobile-text">
+                                    頂級和牛專門店，職人專業代烤，極致美味體驗。
+                                </p>
+                            </div>
+                            <div class="news-social px-2 pb-2 news-social-mobile">
+                                <i class="fa-solid fa-thumbs-up"></i> 0 個讚
+                                <span class="mx-1">|</span>
+                                <i class="fa-solid fa-reply reply-flip"></i> 0
+                                個分享
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card h-100 border-0 shadow-sm news-card">
+                            <img src="assets/images/news/m-fb-3.png" class="card-img-top" alt="6星集按摩會館">
+                            <div class="news-badge-group p-1">
+                                <span class="badge badge-dazhi badge-mobile">大直</span>
+                            </div>
+                            <div class="card-body p-2">
+                                <h6 class="card-title fw-bold mb-1 small">6星集按摩會館</h6>
+                                <p class="text-muted small mb-1 news-card-mobile-date">2025-11-14</p>
+                                <p class="card-text text-secondary mb-0 news-card-mobile-text">
+                                    結合東方傳統與現代養生，提供頂級按摩放鬆體驗。
+                                </p>
+                            </div>
+                            <div class="news-social px-2 pb-2 news-social-mobile">
+                                <i class="fa-solid fa-thumbs-up"></i> 0 個讚
+                                <span class="mx-1">|</span>
+                                <i class="bi bi-reply-fill reply-flip"></i> 0
+                                個分享
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================
+             夜景 Banner 輪播區 (桌機)
+             ======================================== -->
+        <section class="footer-banner-section position-relative d-none d-lg-block">
+            <div class="swiper footer-banner-swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="assets/images/banner/banner-1.png" class="w-100 footer-banner-img" alt="虹光LIVE 夜景">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="assets/images/banner/banner-2.png" class="w-100 footer-banner-img" alt="虹光LIVE 夜景2">
+                    </div>
+                </div>
+                <div class="swiper-pagination footer-banner-pagination footer-pagination-desktop"></div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ========================================
+         層級 7: 頁腳區 — 桌機版 Footer
+         ======================================== -->
+    <footer class="footer-light d-none d-lg-block">
+        <div class="container">
+            <div class="row g-4">
+                <!-- 左側: Logo + 公司介紹 (70%) -->
+                <div class="col footer-col-desc">
+                    <img src="assets/images/common/logo.png" alt="虹光LIVE" class="mb-3 footer-logo">
+                    <p class="footer-desc">
+                        虹光LIVE，是虹光集團傾力打造的複合式餐飲娛樂空間，坐落於台北兩大高質感生活商圈——鄰近北捷大直商圈的劍南路站與永康商圈的東門站。我們不只是空間的提供者，更是生活方式的策展人。
+                    </p>
+                    <p class="footer-desc">
+                        不同於一般百貨商場，虹光LIVE由房地產專業背景出發，活化建築資產、精選優質品牌進駐，並以靈活且客製化的商業模式，為商家量身打造最適合的經營空間。這樣的彈性與深度合作，讓每一個品牌都能在虹光LIVE中發揮最大價值，也讓每一位來訪的顧客，都能體驗前所未有的感官享受與生活美學。
+                    </p>
+                    <p class="footer-desc">
+                        我們相信，空間不只是容器，更是連結城市與人的溫度載體。虹光LIVE，邀您一同重新定義都市生活的可能。
+                    </p>
+                </div>
+
+                <!-- 中間: 網站地圖 (10%) -->
+                <div class="col footer-col-sitemap">
+                    <h5 class="fw-bold mb-3">網站地圖</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="index.html" class="text-white text-decoration-none">虹光LIVE首頁</a></li>
+                        <li class="mb-2"><a href="dazhi.html" class="text-white text-decoration-none">虹光LIVE大直</a></li>
+                        <li class="mb-2"><a href="yongkang.html" class="text-white text-decoration-none">虹光LIVE永康</a>
+                        </li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">HKI GROUP</a></li>
+                    </ul>
+                </div>
+
+                <!-- 右側: 聯絡我們 (20%) -->
+                <div class="col footer-col-contact">
+                    <h5 class="fw-bold mb-3">聯絡我們</h5>
+                    <p class="text-white mb-1">Email: service@hki.com.tw</p>
+                    <p class="text-white mb-1">Tel: 02-8502-7508</p>
+                    <div class="mt-3">
+                        <a href="#" class="text-dark text-decoration-none me-2">
+                            <i class="fa-brands fa-instagram fs-4"></i>
+                        </a>
+                        <a href="#" class="text-dark text-decoration-none">
+                            <i class="fab fa-facebook-f fs-4"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 手機版 Footer -->
+    <footer class="d-lg-none">
+        <div class="swiper footer-banner-swiper-mobile">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img src="assets/images/banner/m-banner-1.png" class="w-100 footer-banner-img-mobile"
+                        alt="Footer Banner">
+                </div>
+                <div class="swiper-slide">
+                    <img src="assets/images/banner/m-banner-2.png" class="w-100 footer-banner-img-mobile"
+                        alt="Footer Banner">
+                </div>
+            </div>
+            <div class="swiper-pagination footer-banner-pagination footer-pagination-mobile"></div>
+        </div>
+        <div class="p-4 mobile-footer-content">
+            <img src="assets/images/common/logo.png" alt="虹光LIVE" class="mb-3 footer-logo">
+            <p class="small mb-3 mobile-footer-desc">
+                虹光LIVE，是虹光集團傾力打造的複合式餐飲娛樂空間，坐落於台北兩大高質感生活商圈——鄰近北捷大直商圈的劍南路站與永康商圈的東門站。我們不只是空間的提供者，更是生活方式的策展人。
+                不同於一般百貨商場，虹光LIVE由房地產專業背景出發，活化建築資產、精選優質品牌進駐，並以靈活且客製化的商業模式，為商家量身打造最適合的經營空間。這樣的彈性與深度合作，讓每一個品牌都能在虹光LIVE中發揮最大價值，也讓每一位來訪的顧客，都能體驗前所未有的感官享受與生活美學。
+                我們相信，空間不只是容器，更是連結城市與人的溫度載體。虹光LIVE，邀您一同重新定義都市生活的可能。
+            </p>
+            <div class="d-flex justify-content-between align-items-start pb-3">
+                <div class="mobile-footer-contact">
+                    <p class="fw-bold mb-1">聯絡我們</p>
+                    <p class="small mb-1">Email: service@hki.com.tw</p>
+                    <p class="small mb-0">Tel: 02-8502-7508</p>
+                </div>
+                <div class="d-flex gap-2">
+                    <a href="#" class="text-dark text-decoration-none">
+                        <i class="fa-brands fa-instagram fs-4"></i>
+                    </a>
+                    <a href="#" class="text-dark text-decoration-none">
+                        <i class="fab fa-facebook-f fs-4"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/branch.js"></script>
+    <script>
+        // Store Hero Swiper
+        new Swiper('#storeHeroSwiper', {
+            loop: true,
+            autoplay: { delay: 4000, disableOnInteraction: false },
+            pagination: {
+                el: '.store-hero-pagination',
+                clickable: true,
+            },
+        });
+    </script>
+
+</body>
+
+</html>

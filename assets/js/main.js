@@ -16,12 +16,19 @@
     var overlay = document.createElement('div');
     overlay.id = 'loadingOverlay';
     overlay.innerHTML =
+        '<style>' +
+        '@keyframes hkiLoadingFade { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } } ' +
+        '.loading-dot { animation: hkiLoadingFade 1.5s ease-in-out infinite; } ' +
+        '#dot1 { animation-delay: -0.4s; } ' +
+        '#dot2 { animation-delay: -0.2s; } ' +
+        '#dot3 { animation-delay: 0s; }' +
+        '</style>' +
         '<div style="display:flex;flex-direction:column;align-items:center;gap:20px;">' +
         '<img src="assets/images/common/logo.png" alt="虹光LIVE" style="width:120px;height:auto;">' +
         '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" style="width:50px;height:50px;">' +
-        '<rect fill="#1B74D9" stroke="#1B74D9" stroke-width="2" width="30" height="30" x="25" y="85"><animate attributeName="opacity" calcMode="spline" dur="2" values="1;0;1;" keySplines=".5 0 .5 1;.5 0 .5 1" repeatCount="indefinite" begin="-.4"></animate></rect>' +
-        '<rect fill="#1B74D9" stroke="#1B74D9" stroke-width="2" width="30" height="30" x="85" y="85"><animate attributeName="opacity" calcMode="spline" dur="2" values="1;0;1;" keySplines=".5 0 .5 1;.5 0 .5 1" repeatCount="indefinite" begin="-.2"></animate></rect>' +
-        '<rect fill="#1B74D9" stroke="#1B74D9" stroke-width="2" width="30" height="30" x="145" y="85"><animate attributeName="opacity" calcMode="spline" dur="2" values="1;0;1;" keySplines=".5 0 .5 1;.5 0 .5 1" repeatCount="indefinite" begin="0"></animate></rect>' +
+        '<rect id="dot1" class="loading-dot" fill="#b2b2b2c9" stroke="#9b9b9b" stroke-width="2" width="30" height="30" x="25" y="85"></rect>' +
+        '<rect id="dot2" class="loading-dot" fill="#b2b2b2c9" stroke="#9b9b9b" stroke-width="2" width="30" height="30" x="85" y="85"></rect>' +
+        '<rect id="dot3" class="loading-dot" fill="#b2b2b2c9" stroke="#9b9b9b" stroke-width="2" width="30" height="30" x="145" y="85"></rect>' +
         '</svg></div>';
 
     // Overlay 樣式
