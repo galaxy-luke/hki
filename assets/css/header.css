@@ -62,13 +62,14 @@
 }
 
 .search-btn {
-    z-index: 5;
+    z-index: 10 !important;
     right: 8px !important;
 }
 
 .search-icon {
     color: #b2b2b2;
     -webkit-text-stroke: 1px;
+    pointer-events: none;
 }
 
 /* 選單分隔線 */
@@ -124,6 +125,7 @@
     text-align: center;
     height: 100%;
     font-family: 'Noto Serif TC', "PMingLiU", "新細明體", serif;
+    cursor: pointer;
 }
 
 /* 進場：由下往上滑入 */

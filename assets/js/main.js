@@ -64,6 +64,14 @@ document.addEventListener('DOMContentLoaded', function () {
     if (!marquee) return;
 
     var items = marquee.querySelectorAll('.marquee-item');
+
+    // 為每則公告加上點擊跳轉
+    items.forEach(function (item) {
+        item.addEventListener('click', function () {
+            window.location.href = 'announcement.html';
+        });
+    });
+
     if (items.length <= 1) return;
 
     var currentIndex = 0;
@@ -91,7 +99,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     setInterval(switchNotice, NOTICE_INTERVAL);
 
-    // === 搜尋功能 (console 偵測) ===
+    // === 桌機版搜尋功能 ===
     var searchBtn = document.getElementById('searchBtn');
     var searchInput = document.getElementById('searchInput');
 
@@ -99,9 +107,9 @@ document.addEventListener('DOMContentLoaded', function () {
         searchBtn.addEventListener('click', function () {
             var keyword = searchInput.value.trim();
             if (keyword) {
-                console.log('🔍 搜尋關鍵字:', keyword);
+                window.location.href = 'search.html?q=' + encodeURIComponent(keyword);
             } else {
-                console.log('⚠️ 請輸入搜尋關鍵字');
+                window.location.href = 'search.html';
             }
         });
 
@@ -112,7 +120,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // === 手機版搜尋功能 (console 偵測) ===
+    // === 手機版搜尋功能 ===
     var mobileSearchBtn = document.getElementById('mobileSearchBtn');
     var mobileSearchInput = document.getElementById('mobileSearchInput');
 
@@ -120,9 +128,9 @@ document.addEventListener('DOMContentLoaded', function () {
         mobileSearchBtn.addEventListener('click', function () {
             var keyword = mobileSearchInput.value.trim();
             if (keyword) {
-                console.log('🔍 手機版搜尋關鍵字:', keyword);
+                window.location.href = 'search.html?q=' + encodeURIComponent(keyword);
             } else {
-                console.log('⚠️ 請輸入搜尋關鍵字');
+                window.location.href = 'search.html';
             }
         });
 
