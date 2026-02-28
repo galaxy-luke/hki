@@ -129,14 +129,14 @@
 }
 
 .store-description p {
-    margin-bottom: 16px;
+    margin-bottom: 0px;
 }
 
 /* --- 聯絡資訊 --- */
 .store-contact-list {
     list-style: none;
     padding: 0;
-    margin: 0 0 16px;
+    margin: 0 0;
 }
 
 .store-contact-list li {
@@ -238,8 +238,8 @@
 
     .store-info-header {
         flex-direction: column;
-        align-items: center;
-        text-align: center;
+        align-items: flex-start;
+        text-align: left;
         gap: 16px;
     }
 
