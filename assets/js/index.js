@@ -127,7 +127,8 @@ document.addEventListener('DOMContentLoaded', function () {
         new Swiper('#brandSwiper', {
             slidesPerView: 1,
             spaceBetween: 10,
-            loop: true,
+            loop: slideCount > 1,
+            rewind: slideCount <= 1,
             loopAdditionalSlides: 2,
             autoplay: {
                 delay: 2000,

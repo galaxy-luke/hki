@@ -193,9 +193,12 @@ document.addEventListener('DOMContentLoaded', function () {
         truncateMobileAnnouncements();
         window.addEventListener('resize', truncateMobileAnnouncements);
 
+        var mobileSwiperEl = document.querySelector('.mobile-announcement-swiper');
+        var mobileSlideCount = mobileSwiperEl ? mobileSwiperEl.querySelectorAll('.swiper-slide').length : 0;
+
         new Swiper('.mobile-announcement-swiper', {
             direction: 'vertical',
-            loop: true,
+            loop: mobileSlideCount > 1,
             autoplay: {
                 delay: 3000,
                 disableOnInteraction: false

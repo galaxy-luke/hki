@@ -124,11 +124,12 @@ document.addEventListener('DOMContentLoaded', function () {
     if (branchBrandSwiperWrapper) shuffleChildren(branchBrandSwiperWrapper, '.swiper-slide');
 
     // 分開 yongkang 和 dazhi 的 brandBranchSwiper
-    function initBranchBrandSwiperYongkang() {
+    function initBranchBrandSwiperYongkang(slideCount) {
         new Swiper('#branchBrandSwiper', {
             slidesPerView: 1,
             spaceBetween: 10,
-            loop: true, // 只有 4 個不算多，手機顯示 1~2 個，設 loop 容易 warning
+            loop: slideCount > 4, // 只有 4 個不算多，手機顯示 1~2 個，設 loop 容易 warning
+            rewind: slideCount <= 4,
             autoplay: {
                 delay: 2000,
                 disableOnInteraction: false,
@@ -143,6 +144,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 768: { slidesPerView: 3, spaceBetween: 20 },
                 992: { slidesPerView: 4, spaceBetween: 25 },
             },
+            watchOverflow: true,
         });
     }
 
@@ -174,7 +176,7 @@ document.addEventListener('DOMContentLoaded', function () {
         var slideCount = el.querySelectorAll('.swiper-wrapper > .swiper-slide').length;
 
         if (slideCount <= 4) {
-            initBranchBrandSwiperYongkang();
+            initBranchBrandSwiperYongkang(slideCount);
         } else {
             initBranchBrandSwiperDazhi(slideCount);
         }
