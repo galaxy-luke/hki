@@ -151,10 +151,22 @@ document.addEventListener('DOMContentLoaded', function () {
     function initBranchBrandSwiperYongkang(slideCount) {
         var el = document.getElementById('branchBrandSwiper');
         if (!el || el.offsetParent === null) return; // 隱藏中就不執行
+
+        var wrapper = el.querySelector('.swiper-wrapper');
+
+        // 如果投影片數量小於 5 個（例如永康只有 4 個），複製一份以確保可以無限循環 (loop: true)
+        if (wrapper && slideCount >= 2 && slideCount <= 8) {
+            var slides = wrapper.querySelectorAll('.swiper-slide');
+            slides.forEach(function (s) {
+                wrapper.appendChild(s.cloneNode(true));
+            });
+            slideCount = wrapper.querySelectorAll('.swiper-slide').length;
+        }
+
         new Swiper('#branchBrandSwiper', {
             slidesPerView: 1,
             spaceBetween: 10,
-            loop: slideCount > 4, // 只有 4 個不算多，手機顯示 1~2 個，設 loop 容易 warning
+            loop: slideCount > 4, // 複製後數量變 8，即可安全啟用 loop
             rewind: slideCount <= 4,
             autoplay: {
                 delay: 2000,
