@@ -8,44 +8,10 @@
 /* ===================================
    進站 Loading Overlay
    =================================== */
+/* ===================================
+   進站 Loading Overlay 追蹤邏輯
+   =================================== */
 (function () {
-    var ENABLE_LOADING_OVERLAY = true; // ← 設為 false 可關閉進站 Loading
-
-    if (!ENABLE_LOADING_OVERLAY) return;
-    // 動態建立 overlay DOM
-    var overlay = document.createElement('div');
-    overlay.id = 'loadingOverlay';
-    overlay.innerHTML =
-        '<style>' +
-        '@keyframes hkiLoadingFade { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } } ' +
-        '.loading-dot { animation: hkiLoadingFade 1.5s ease-in-out infinite; } ' +
-        '#dot1 { animation-delay: -0.4s; } ' +
-        '#dot2 { animation-delay: -0.2s; } ' +
-        '#dot3 { animation-delay: 0s; }' +
-        '</style>' +
-        '<div style="display:flex;flex-direction:column;align-items:center;gap:20px;">' +
-        '<img src="assets/images/common/logo.png" alt="虹光LIVE" style="width:120px;height:auto;">' +
-        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" style="width:50px;height:50px;">' +
-        '<rect id="dot1" class="loading-dot" fill="#b2b2b2c9" stroke="#9b9b9b" stroke-width="2" width="30" height="30" x="25" y="85"></rect>' +
-        '<rect id="dot2" class="loading-dot" fill="#b2b2b2c9" stroke="#9b9b9b" stroke-width="2" width="30" height="30" x="85" y="85"></rect>' +
-        '<rect id="dot3" class="loading-dot" fill="#b2b2b2c9" stroke="#9b9b9b" stroke-width="2" width="30" height="30" x="145" y="85"></rect>' +
-        '</svg></div>';
-
-    // Overlay 樣式
-    overlay.style.cssText =
-        'position:fixed;top:0;left:0;width:100%;height:100%;' +
-        'background:#fff;display:flex;align-items:center;justify-content:center;' +
-        'z-index:99999;transition:opacity 1s ease;opacity:1;';
-
-    // 盡早插入 body（若 body 還未就緒，等 DOMContentLoaded）
-    if (document.body) {
-        document.body.appendChild(overlay);
-    } else {
-        document.addEventListener('DOMContentLoaded', function () {
-            document.body.appendChild(overlay);
-        });
-    }
-
     // 自定義資源追蹤：等待 DOM + 圖片，但排除字型 (fonts)
     document.addEventListener('DOMContentLoaded', function () {
         var images = document.querySelectorAll('img');
@@ -55,7 +21,7 @@
 
         function hideOverlay() {
             if (timeoutReached) return;
-            timeoutReached = true; // 確保只執行一次
+            timeoutReached = true;
 
             setTimeout(function () {
                 var el = document.getElementById('loadingOverlay');
@@ -91,7 +57,7 @@
                     checkDone();
                 } else {
                     img.addEventListener('load', checkDone);
-                    img.addEventListener('error', checkDone); // 就算沒抓到也算完成，避免卡住
+                    img.addEventListener('error', checkDone);
                 }
             });
         }
