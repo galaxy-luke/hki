@@ -70,9 +70,15 @@
     justify-content: center;
 }
 
-/* 限制 Swiper 最大寬度為 700px (4個 160px 品牌 + 3個 20px 間距 = 640 + 60 = 700) */
-.branch-hero-brands .swiper {
+/* 永康：限制 Swiper 最大寬度為 700px (4個 160px 品牌 + 3個 20px 間距 = 640 + 60 = 700) */
+.yongkang-hero-brands .swiper {
     max-width: 700px;
+    margin: 0 auto;
+}
+
+/* 大直：限制 Swiper 最大寬度為 1270px (7個 160px 品牌 + 6個 25px 間距 = 1120 + 150 = 1270) */
+.dazhi-hero-brands .swiper {
+    max-width: 1270px;
     margin: 0 auto;
 }
 
