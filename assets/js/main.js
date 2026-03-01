@@ -46,16 +46,18 @@
         });
     }
 
-    // 頁面所有資源載入完成後，保留顯示 1 秒再淡出 1 秒
-    window.addEventListener('load', function () {
+    // 頁面結構載入完成後 (DOMContentLoaded) 即可關閉，不用等全部字型抓完
+    document.addEventListener('DOMContentLoaded', function () {
         setTimeout(function () {
             var el = document.getElementById('loadingOverlay');
             if (!el) return;
             el.style.opacity = '0';
             setTimeout(function () {
-                el.parentNode.removeChild(el);
+                if (el.parentNode) {
+                    el.parentNode.removeChild(el);
+                }
             }, 1000); // 等淡出動畫 1 秒結束再移除
-        }, 1000); // 載入完成後保留顯示 1 秒
+        }, 500); // 結構完成後保留顯示 0.5 秒 (原為 1 秒)
     });
 })();
 
