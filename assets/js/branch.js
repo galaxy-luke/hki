@@ -149,11 +149,22 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function initBranchBrandSwiperDazhi(slideCount) {
+        var el = document.getElementById('branchBrandSwiper');
+        var wrapper = el ? el.querySelector('.swiper-wrapper') : null;
+
+        // 如果投影片數量在 2~12 之間，複製一份以確保 Loop 順暢不報錯 (Desktop slidesPerView 為 6)
+        if (wrapper && slideCount >= 2 && slideCount <= 12) {
+            var slides = wrapper.querySelectorAll('.swiper-slide');
+            slides.forEach(function (s) {
+                wrapper.appendChild(s.cloneNode(true));
+            });
+            slideCount = wrapper.querySelectorAll('.swiper-slide').length;
+        }
+
         new Swiper('#branchBrandSwiper', {
             slidesPerView: 1,
             spaceBetween: 10,
             loop: slideCount > 6,
-            loopAdditionalSlides: slideCount > 6 ? 4 : 0,
             autoplay: {
                 delay: 2000,
                 disableOnInteraction: false,
@@ -168,6 +179,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 768: { slidesPerView: 4, spaceBetween: 20 },
                 992: { slidesPerView: 6, spaceBetween: 25 },
             },
+            watchOverflow: true,
         });
     }
 
