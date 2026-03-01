@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         new Swiper('#heroBrandSwiper', {
             slidesPerView: 4,
-            spaceBetween: 0,
+            spaceBetween: 20,
             loop: slideCount > 4,
             autoplay: { delay: 3000, disableOnInteraction: false },
             navigation: {

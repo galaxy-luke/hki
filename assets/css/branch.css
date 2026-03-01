@@ -62,10 +62,18 @@
 .branch-hero-brands {
     z-index: 3;
     padding: 0 40px;
-    /* Leave space for arrows */
     position: absolute;
     bottom: 35px;
     width: 100%;
+    /* 讓內部的 swiper 置中，避免在 4 個品牌時過度拉伸 */
+    display: flex;
+    justify-content: center;
+}
+
+/* 限制 Swiper 最大寬度，讓項目可以緊湊排列 (配合 spaceBetween: 20) */
+.branch-hero-brands .swiper {
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 .branch-hero-brands .brand-card {
