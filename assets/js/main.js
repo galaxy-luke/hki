@@ -208,8 +208,10 @@ document.addEventListener('DOMContentLoaded', function () {
         var mobileAnnouncementSwiperInstance = null;
 
         function handleMobileSwiperState() {
-            var isMobile = window.innerWidth < 992;
-            if (isMobile && !mobileAnnouncementSwiperInstance) {
+            // 使用 offsetParent 判斷目前該元素是否正在顯示 (避開 display:none 報錯)
+            var isVisible = mobileSwiperEl.offsetParent !== null;
+
+            if (isVisible && !mobileAnnouncementSwiperInstance) {
                 mobileAnnouncementSwiperInstance = new Swiper('.mobile-announcement-swiper', {
                     direction: 'vertical',
                     loop: finalSlideCount > 2,
@@ -218,7 +220,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         disableOnInteraction: false
                     }
                 });
-            } else if (!isMobile && mobileAnnouncementSwiperInstance) {
+            } else if (!isVisible && mobileAnnouncementSwiperInstance) {
                 mobileAnnouncementSwiperInstance.destroy(true, true);
                 mobileAnnouncementSwiperInstance = null;
             }

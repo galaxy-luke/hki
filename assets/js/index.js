@@ -122,30 +122,32 @@ document.addEventListener('DOMContentLoaded', function () {
     // --- Swiper 初始化 ---
     if (document.getElementById('brandSwiper')) {
         var brandSwiperEl = document.getElementById('brandSwiper');
-        var slideCount = brandSwiperEl.querySelectorAll('.swiper-slide').length;
-
-        new Swiper('#brandSwiper', {
-            slidesPerView: 1,
-            spaceBetween: 10,
-            loop: slideCount > 1,
-            rewind: slideCount <= 1,
-            loopAdditionalSlides: 2,
-            autoplay: {
-                delay: 2000,
-                disableOnInteraction: false,
-            },
-            navigation: {
-                nextEl: '#brandNextBtn',
-                prevEl: '#brandPrevBtn',
-            },
-            breakpoints: {
-                320: { slidesPerView: 2, spaceBetween: 10 },
-                480: { slidesPerView: 3, spaceBetween: 20 },
-                768: { slidesPerView: 4, spaceBetween: 20 },
-                992: { slidesPerView: 6, spaceBetween: 25 },
-            },
-            watchOverflow: true,
-        });
+        // 加入 offsetParent 判斷，如果元素目前隱藏 (例如在某些斷點下) 則不執行
+        if (brandSwiperEl.offsetParent !== null) {
+            var slideCount = brandSwiperEl.querySelectorAll('.swiper-slide').length;
+            new Swiper('#brandSwiper', {
+                slidesPerView: 1,
+                spaceBetween: 10,
+                loop: slideCount > 1,
+                rewind: slideCount <= 1,
+                loopAdditionalSlides: 2,
+                autoplay: {
+                    delay: 2000,
+                    disableOnInteraction: false,
+                },
+                navigation: {
+                    nextEl: '#brandNextBtn',
+                    prevEl: '#brandPrevBtn',
+                },
+                breakpoints: {
+                    320: { slidesPerView: 2, spaceBetween: 10 },
+                    480: { slidesPerView: 3, spaceBetween: 20 },
+                    768: { slidesPerView: 4, spaceBetween: 20 },
+                    992: { slidesPerView: 6, spaceBetween: 25 },
+                },
+                watchOverflow: true,
+            });
+        }
     }
 
     // --- Hero Banner hover 效果 (由 CSS .hero-desc-overlay 處理) ---
@@ -161,7 +163,7 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     var footerDesktopEl = document.querySelector('.footer-banner-swiper');
-    if (footerDesktopEl) {
+    if (footerDesktopEl && footerDesktopEl.offsetParent !== null) {
         var slideCountDesktop = footerDesktopEl.querySelectorAll('.swiper-wrapper > .swiper-slide').length;
         new Swiper('.footer-banner-swiper', Object.assign({}, footerBannerConfig, {
             pagination: { el: '.footer-pagination-desktop', clickable: true },
@@ -171,7 +173,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     var footerMobileEl = document.querySelector('.footer-banner-swiper-mobile');
-    if (footerMobileEl) {
+    if (footerMobileEl && footerMobileEl.offsetParent !== null) {
         var slideCountMobile = footerMobileEl.querySelectorAll('.swiper-wrapper > .swiper-slide').length;
         new Swiper('.footer-banner-swiper-mobile', Object.assign({}, footerBannerConfig, {
             pagination: { el: '.footer-pagination-mobile', clickable: true },

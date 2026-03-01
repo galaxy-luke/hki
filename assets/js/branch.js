@@ -61,8 +61,9 @@ document.addEventListener('DOMContentLoaded', function () {
        ============================================= */
     function initHeroSwiperYongkang() {
         var el = document.getElementById('heroBrandSwiper');
-        var wrapper = el ? el.querySelector('.swiper-wrapper') : null;
-        var slideCount = el ? el.querySelectorAll('.swiper-slide').length : 0;
+        if (!el || el.offsetParent === null) return; // 沒抓到或目前隱藏 (如在手機版) 就不執行
+        var wrapper = el.querySelector('.swiper-wrapper');
+        var slideCount = el.querySelectorAll('.swiper-slide').length;
 
         // 如果投影片數量在 2~8 之間，複製一份以確保 Loop 順暢不報錯 (slidesPerView 為 4)
         if (wrapper && slideCount >= 2 && slideCount <= 8) {
@@ -90,8 +91,9 @@ document.addEventListener('DOMContentLoaded', function () {
        ============================================= */
     function initHeroSwiperDazhi() {
         var el = document.getElementById('heroBrandSwiper');
-        var wrapper = el ? el.querySelector('.swiper-wrapper') : null;
-        var slideCount = el ? el.querySelectorAll('.swiper-slide').length : 0;
+        if (!el || el.offsetParent === null) return; // 沒抓到或目前隱藏 (如在手機版) 就不執行
+        var wrapper = el.querySelector('.swiper-wrapper');
+        var slideCount = el.querySelectorAll('.swiper-slide').length;
 
         // 如果投影片數量在 2~14 之間，複製一份以確保 Loop 順暢不報錯 (slidesPerView 為 7)
         if (wrapper && slideCount >= 2 && slideCount <= 14) {
@@ -147,6 +149,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // 分開 yongkang 和 dazhi 的 brandBranchSwiper
     function initBranchBrandSwiperYongkang(slideCount) {
+        var el = document.getElementById('branchBrandSwiper');
+        if (!el || el.offsetParent === null) return; // 隱藏中就不執行
         new Swiper('#branchBrandSwiper', {
             slidesPerView: 1,
             spaceBetween: 10,
@@ -172,7 +176,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function initBranchBrandSwiperDazhi(slideCount) {
         var el = document.getElementById('branchBrandSwiper');
-        var wrapper = el ? el.querySelector('.swiper-wrapper') : null;
+        if (!el || el.offsetParent === null) return; // 隱藏中就不執行
+        var wrapper = el.querySelector('.swiper-wrapper');
 
         // 如果投影片數量在 2~12 之間，複製一份以確保 Loop 順暢不報錯 (Desktop slidesPerView 為 6)
         if (wrapper && slideCount >= 2 && slideCount <= 12) {
