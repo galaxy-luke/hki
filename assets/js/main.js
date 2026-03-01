@@ -143,7 +143,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // === 手機版置底推播 (Mobile Sticky Announcement) ===
     if (document.querySelector('.mobile-announcement-swiper')) {
-        // 取得所有 mobile announcement 連結
+        var mobileSwiperEl = document.querySelector('.mobile-announcement-swiper');
+        var mobileSwiperWrapper = mobileSwiperEl.querySelector('.swiper-wrapper');
+        var originalSlides = mobileSwiperWrapper.querySelectorAll('.swiper-slide');
+
+        // Swiper loop 需要足夠的 DOM 節點，若只有 2 則公告易觸發警告，自動複製成 4 則
+        if (originalSlides.length === 2) {
+            originalSlides.forEach(function (slide) {
+                mobileSwiperWrapper.appendChild(slide.cloneNode(true));
+            });
+        }
+
+        // 取得所有 mobile announcement 連結（此時若被複製，會一併抓取）
         var mobileLinks = document.querySelectorAll('.mobile-announcement-text');
 
         // 存放原始文字的陣列
@@ -193,16 +204,27 @@ document.addEventListener('DOMContentLoaded', function () {
         truncateMobileAnnouncements();
         window.addEventListener('resize', truncateMobileAnnouncements);
 
-        var mobileSwiperEl = document.querySelector('.mobile-announcement-swiper');
-        var mobileSlideCount = mobileSwiperEl ? mobileSwiperEl.querySelectorAll('.swiper-slide').length : 0;
+        var finalSlideCount = mobileSwiperEl.querySelectorAll('.swiper-slide').length;
+        var mobileAnnouncementSwiperInstance = null;
 
-        new Swiper('.mobile-announcement-swiper', {
-            direction: 'vertical',
-            loop: mobileSlideCount > 1,
-            autoplay: {
-                delay: 3000,
-                disableOnInteraction: false
+        function handleMobileSwiperState() {
+            var isMobile = window.innerWidth < 992;
+            if (isMobile && !mobileAnnouncementSwiperInstance) {
+                mobileAnnouncementSwiperInstance = new Swiper('.mobile-announcement-swiper', {
+                    direction: 'vertical',
+                    loop: finalSlideCount > 2,
+                    autoplay: {
+                        delay: 3000,
+                        disableOnInteraction: false
+                    }
+                });
+            } else if (!isMobile && mobileAnnouncementSwiperInstance) {
+                mobileAnnouncementSwiperInstance.destroy(true, true);
+                mobileAnnouncementSwiperInstance = null;
             }
-        });
+        }
+
+        handleMobileSwiperState();
+        window.addEventListener('resize', handleMobileSwiperState);
     }
 });
