@@ -143,6 +143,56 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // === 手機版置底推播 (Mobile Sticky Announcement) ===
     if (document.querySelector('.mobile-announcement-swiper')) {
+        // 取得所有 mobile announcement 連結
+        var mobileLinks = document.querySelectorAll('.mobile-announcement-text');
+
+        // 存放原始文字的陣列
+        var originalTexts = [];
+        mobileLinks.forEach(function (link, index) {
+            originalTexts[index] = link.textContent.trim();
+        });
+
+        function truncateMobileAnnouncements() {
+            var containerWidth = window.innerWidth - 20; // 扣除左右 padding 各 10px
+
+            // 建立一個隱藏的 span 來測量文字寬度
+            var measureContext = document.createElement('span');
+            measureContext.style.visibility = 'hidden';
+            measureContext.style.position = 'absolute';
+            measureContext.style.whiteSpace = 'nowrap';
+            measureContext.style.fontSize = '16px';
+            measureContext.style.fontFamily = "'Noto Sans TC', 'Microsoft JhengHei', serif";
+            document.body.appendChild(measureContext);
+
+            mobileLinks.forEach(function (link, index) {
+                var fullText = originalTexts[index];
+                measureContext.textContent = fullText;
+
+                // 如果文字總寬度超過容器大小，就進行裁切
+                if (measureContext.offsetWidth > containerWidth) {
+                    var truncated = fullText;
+                    // 逐步縮短文字直到加上 '...' 後寬度小於容器
+                    while (truncated.length > 0) {
+                        truncated = truncated.slice(0, -1);
+                        measureContext.textContent = truncated + '...';
+                        if (measureContext.offsetWidth <= containerWidth) {
+                            break;
+                        }
+                    }
+                    link.textContent = truncated + '...';
+                } else {
+                    // 若沒有超過就顯示原文字
+                    link.textContent = fullText;
+                }
+            });
+
+            document.body.removeChild(measureContext);
+        }
+
+        // 首次執行裁切與綁定 resize 事件
+        truncateMobileAnnouncements();
+        window.addEventListener('resize', truncateMobileAnnouncements);
+
         new Swiper('.mobile-announcement-swiper', {
             direction: 'vertical',
             loop: true,
