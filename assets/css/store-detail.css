@@ -293,3 +293,14 @@
         align-items: flex-start;
     }
 }
+
+/* =============================================
+   與 Index.html 保持一致的區塊間距
+   ============================================= */
+.news-section {
+    background: #f0f0f0;
+}
+
+.footer-banner-section {
+    margin: 30px 0;
+}
