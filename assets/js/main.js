@@ -46,18 +46,55 @@
         });
     }
 
-    // 頁面結構載入完成後 (DOMContentLoaded) 即可關閉，不用等全部字型抓完
+    // 自定義資源追蹤：等待 DOM + 圖片，但排除字型 (fonts)
     document.addEventListener('DOMContentLoaded', function () {
-        setTimeout(function () {
-            var el = document.getElementById('loadingOverlay');
-            if (!el) return;
-            el.style.opacity = '0';
+        var images = document.querySelectorAll('img');
+        var totalImages = images.length;
+        var loadedCount = 0;
+        var timeoutReached = false;
+
+        function hideOverlay() {
+            if (timeoutReached) return;
+            timeoutReached = true; // 確保只執行一次
+
             setTimeout(function () {
-                if (el.parentNode) {
-                    el.parentNode.removeChild(el);
+                var el = document.getElementById('loadingOverlay');
+                if (!el) return;
+                el.style.opacity = '0';
+                setTimeout(function () {
+                    if (el.parentNode) {
+                        el.parentNode.removeChild(el);
+                    }
+                }, 1000);
+            }, 500);
+        }
+
+        // 安全機制：如果圖片太多或抓太久，5 秒後強制關閉 Loading
+        var safetyTimeout = setTimeout(function () {
+            hideOverlay();
+        }, 5000);
+
+        function checkDone() {
+            loadedCount++;
+            if (loadedCount >= totalImages) {
+                clearTimeout(safetyTimeout);
+                hideOverlay();
+            }
+        }
+
+        if (totalImages === 0) {
+            clearTimeout(safetyTimeout);
+            hideOverlay();
+        } else {
+            images.forEach(function (img) {
+                if (img.complete) {
+                    checkDone();
+                } else {
+                    img.addEventListener('load', checkDone);
+                    img.addEventListener('error', checkDone); // 就算沒抓到也算完成，避免卡住
                 }
-            }, 1000); // 等淡出動畫 1 秒結束再移除
-        }, 500); // 結構完成後保留顯示 0.5 秒 (原為 1 秒)
+            });
+        }
     });
 })();
 
