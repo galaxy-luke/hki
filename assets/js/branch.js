@@ -61,7 +61,18 @@ document.addEventListener('DOMContentLoaded', function () {
        ============================================= */
     function initHeroSwiperYongkang() {
         var el = document.getElementById('heroBrandSwiper');
+        var wrapper = el ? el.querySelector('.swiper-wrapper') : null;
         var slideCount = el ? el.querySelectorAll('.swiper-slide').length : 0;
+
+        // 如果投影片數量在 2~8 之間，複製一份以確保 Loop 順暢不報錯 (slidesPerView 為 4)
+        if (wrapper && slideCount >= 2 && slideCount <= 8) {
+            var slides = wrapper.querySelectorAll('.swiper-slide');
+            slides.forEach(function (s) {
+                wrapper.appendChild(s.cloneNode(true));
+            });
+            slideCount = wrapper.querySelectorAll('.swiper-slide').length;
+        }
+
         new Swiper('#heroBrandSwiper', {
             slidesPerView: 4,
             spaceBetween: 0,
@@ -79,7 +90,18 @@ document.addEventListener('DOMContentLoaded', function () {
        ============================================= */
     function initHeroSwiperDazhi() {
         var el = document.getElementById('heroBrandSwiper');
+        var wrapper = el ? el.querySelector('.swiper-wrapper') : null;
         var slideCount = el ? el.querySelectorAll('.swiper-slide').length : 0;
+
+        // 如果投影片數量在 2~14 之間，複製一份以確保 Loop 順暢不報錯 (slidesPerView 為 7)
+        if (wrapper && slideCount >= 2 && slideCount <= 14) {
+            var slides = wrapper.querySelectorAll('.swiper-slide');
+            slides.forEach(function (s) {
+                wrapper.appendChild(s.cloneNode(true));
+            });
+            slideCount = wrapper.querySelectorAll('.swiper-slide').length;
+        }
+
         new Swiper('#heroBrandSwiper', {
             slidesPerView: 7,
             spaceBetween: 0,
