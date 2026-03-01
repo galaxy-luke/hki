@@ -10,8 +10,9 @@
     <link rel="stylesheet" href="plugins/fontawesome/css/all.min.css">
     <link rel="stylesheet" href="plugins/swiper/swiper-bundle.min.css">
 
-    <!-- Google Fonts -->
-    <link rel="stylesheet" href="plugins/fonts/fonts.css">
+        <!-- Google Fonts (非同步載入字型) -->
+    <link rel="preload" href="plugins/fonts/fonts.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="plugins/fonts/fonts.css"></noscript>
 
 
     <link rel="stylesheet" href="assets/css/header.css">
@@ -530,3 +531,4 @@
 </body>
 
 </html>
+
