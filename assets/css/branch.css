@@ -70,9 +70,9 @@
     justify-content: center;
 }
 
-/* 限制 Swiper 最大寬度，讓項目可以緊湊排列 (配合 spaceBetween: 20) */
+/* 限制 Swiper 最大寬度為 700px (4個 160px 品牌 + 3個 20px 間距 = 640 + 60 = 700) */
 .branch-hero-brands .swiper {
-    max-width: 800px;
+    max-width: 700px;
     margin: 0 auto;
 }
 
