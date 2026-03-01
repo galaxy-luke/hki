@@ -60,10 +60,12 @@ document.addEventListener('DOMContentLoaded', function () {
        Hero 品牌輪播 — 永康專用 (4 個品牌，不縮減)
        ============================================= */
     function initHeroSwiperYongkang() {
+        var el = document.getElementById('heroBrandSwiper');
+        var slideCount = el ? el.querySelectorAll('.swiper-slide').length : 0;
         new Swiper('#heroBrandSwiper', {
             slidesPerView: 4,
             spaceBetween: 0,
-            loop: true,
+            loop: slideCount > 4,
             autoplay: { delay: 3000, disableOnInteraction: false },
             navigation: {
                 nextEl: '#heroBrandNext',
@@ -76,10 +78,12 @@ document.addEventListener('DOMContentLoaded', function () {
        Hero 品牌輪播 — 大直專用 (7 個品牌，隨寬度縮減)
        ============================================= */
     function initHeroSwiperDazhi() {
+        var el = document.getElementById('heroBrandSwiper');
+        var slideCount = el ? el.querySelectorAll('.swiper-slide').length : 0;
         new Swiper('#heroBrandSwiper', {
             slidesPerView: 7,
             spaceBetween: 0,
-            loop: true,
+            loop: slideCount > 7,
             autoplay: { delay: 3000, disableOnInteraction: false },
             navigation: {
                 nextEl: '#heroBrandNext',
@@ -119,12 +123,35 @@ document.addEventListener('DOMContentLoaded', function () {
     var branchBrandSwiperWrapper = document.querySelector('#branchBrandSwiper .swiper-wrapper');
     if (branchBrandSwiperWrapper) shuffleChildren(branchBrandSwiperWrapper, '.swiper-slide');
 
-    if (document.getElementById('branchBrandSwiper')) {
+    // 分開 yongkang 和 dazhi 的 brandBranchSwiper
+    function initBranchBrandSwiperYongkang() {
         new Swiper('#branchBrandSwiper', {
             slidesPerView: 1,
             spaceBetween: 10,
-            loop: true,
-            loopAdditionalSlides: 4,
+            loop: true, // 只有 4 個不算多，手機顯示 1~2 個，設 loop 容易 warning
+            autoplay: {
+                delay: 2000,
+                disableOnInteraction: false,
+            },
+            navigation: {
+                nextEl: '#branchBrandNext',
+                prevEl: '#branchBrandPrev',
+            },
+            breakpoints: {
+                320: { slidesPerView: 2, spaceBetween: 10 },
+                480: { slidesPerView: 2, spaceBetween: 20 },
+                768: { slidesPerView: 3, spaceBetween: 20 },
+                992: { slidesPerView: 4, spaceBetween: 25 },
+            },
+        });
+    }
+
+    function initBranchBrandSwiperDazhi(slideCount) {
+        new Swiper('#branchBrandSwiper', {
+            slidesPerView: 1,
+            spaceBetween: 10,
+            loop: slideCount > 6,
+            loopAdditionalSlides: slideCount > 6 ? 4 : 0,
             autoplay: {
                 delay: 2000,
                 disableOnInteraction: false,
@@ -142,12 +169,22 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    if (document.getElementById('branchBrandSwiper')) {
+        var el = document.getElementById('branchBrandSwiper');
+        var slideCount = el.querySelectorAll('.swiper-wrapper > .swiper-slide').length;
+
+        if (slideCount <= 4) {
+            initBranchBrandSwiperYongkang();
+        } else {
+            initBranchBrandSwiperDazhi(slideCount);
+        }
+    }
+
     /* =============================================
        底部 Banner 輪播（桌機版 + 手機版）
        ============================================= */
     var footerBannerConfig = {
         slidesPerView: 1,
-        loop: true,
         autoplay: {
             delay: 4000,
             disableOnInteraction: false,
@@ -155,14 +192,23 @@ document.addEventListener('DOMContentLoaded', function () {
         speed: 800,
     };
 
-    if (document.querySelector('.footer-banner-swiper')) {
+    var footerDesktopEl = document.querySelector('.footer-banner-swiper');
+    if (footerDesktopEl) {
+        var slideCountDesktop = footerDesktopEl.querySelectorAll('.swiper-wrapper > .swiper-slide').length;
         new Swiper('.footer-banner-swiper', Object.assign({}, footerBannerConfig, {
-            pagination: { el: '.footer-pagination-desktop', clickable: true }
+            pagination: { el: '.footer-pagination-desktop', clickable: true },
+            loop: slideCountDesktop > 2,
+            rewind: slideCountDesktop <= 2
         }));
     }
-    if (document.querySelector('.footer-banner-swiper-mobile')) {
+
+    var footerMobileEl = document.querySelector('.footer-banner-swiper-mobile');
+    if (footerMobileEl) {
+        var slideCountMobile = footerMobileEl.querySelectorAll('.swiper-wrapper > .swiper-slide').length;
         new Swiper('.footer-banner-swiper-mobile', Object.assign({}, footerBannerConfig, {
-            pagination: { el: '.footer-pagination-mobile', clickable: true }
+            pagination: { el: '.footer-pagination-mobile', clickable: true },
+            loop: slideCountMobile > 2,
+            rewind: slideCountMobile <= 2
         }));
     }
 
@@ -230,18 +276,3 @@ function initBranchAutoFlip() {
     }
 }
 
-// =============================================
-// Store Hero Swiper (moved from inline HTML)
-// =============================================
-document.addEventListener('DOMContentLoaded', function() {
-    if (document.querySelector('#storeHeroSwiper')) {
-        new Swiper('#storeHeroSwiper', {
-            loop: true,
-            autoplay: { delay: 4000, disableOnInteraction: false },
-            pagination: {
-                el: '.store-hero-pagination',
-                clickable: true,
-            },
-        });
-    }
-});

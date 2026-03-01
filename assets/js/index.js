@@ -121,11 +121,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // --- Swiper 初始化 ---
     if (document.getElementById('brandSwiper')) {
+        var brandSwiperEl = document.getElementById('brandSwiper');
+        var slideCount = brandSwiperEl.querySelectorAll('.swiper-slide').length;
+
         new Swiper('#brandSwiper', {
             slidesPerView: 1,
             spaceBetween: 10,
             loop: true,
-            loopAdditionalSlides: 6,
+            loopAdditionalSlides: 2,
             autoplay: {
                 delay: 2000,
                 disableOnInteraction: false,
@@ -135,23 +138,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 prevEl: '#brandPrevBtn',
             },
             breakpoints: {
-                320: {
-                    slidesPerView: 2,
-                    spaceBetween: 10,
-                },
-                480: {
-                    slidesPerView: 3,
-                    spaceBetween: 20,
-                },
-                768: {
-                    slidesPerView: 4,
-                    spaceBetween: 20,
-                },
-                992: {
-                    slidesPerView: 6,
-                    spaceBetween: 25,
-                },
+                320: { slidesPerView: 2, spaceBetween: 10 },
+                480: { slidesPerView: 3, spaceBetween: 20 },
+                768: { slidesPerView: 4, spaceBetween: 20 },
+                992: { slidesPerView: 6, spaceBetween: 25 },
             },
+            watchOverflow: true,
         });
     }
 
@@ -160,7 +152,6 @@ document.addEventListener('DOMContentLoaded', function () {
     // --- 底部 Banner 輪播（桌機版 + 手機版）---
     var footerBannerConfig = {
         slidesPerView: 1,
-        loop: true,
         autoplay: {
             delay: 4000,
             disableOnInteraction: false,
@@ -168,14 +159,23 @@ document.addEventListener('DOMContentLoaded', function () {
         speed: 800,
     };
 
-    if (document.querySelector('.footer-banner-swiper')) {
+    var footerDesktopEl = document.querySelector('.footer-banner-swiper');
+    if (footerDesktopEl) {
+        var slideCountDesktop = footerDesktopEl.querySelectorAll('.swiper-wrapper > .swiper-slide').length;
         new Swiper('.footer-banner-swiper', Object.assign({}, footerBannerConfig, {
-            pagination: { el: '.footer-pagination-desktop', clickable: true }
+            pagination: { el: '.footer-pagination-desktop', clickable: true },
+            loop: slideCountDesktop > 2,
+            rewind: slideCountDesktop <= 2
         }));
     }
-    if (document.querySelector('.footer-banner-swiper-mobile')) {
+
+    var footerMobileEl = document.querySelector('.footer-banner-swiper-mobile');
+    if (footerMobileEl) {
+        var slideCountMobile = footerMobileEl.querySelectorAll('.swiper-wrapper > .swiper-slide').length;
         new Swiper('.footer-banner-swiper-mobile', Object.assign({}, footerBannerConfig, {
-            pagination: { el: '.footer-pagination-mobile', clickable: true }
+            pagination: { el: '.footer-pagination-mobile', clickable: true },
+            loop: slideCountMobile > 2,
+            rewind: slideCountMobile <= 2
         }));
     }
 
