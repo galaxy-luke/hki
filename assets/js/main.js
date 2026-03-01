@@ -140,4 +140,16 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
+
+    // === 手機版置底推播 (Mobile Sticky Announcement) ===
+    if (document.querySelector('.mobile-announcement-swiper')) {
+        new Swiper('.mobile-announcement-swiper', {
+            direction: 'vertical',
+            loop: true,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false
+            }
+        });
+    }
 });
