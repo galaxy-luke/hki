@@ -19,7 +19,7 @@
 }
 
 .announce-date {
-    font-size: 16px;
+    font-size: 20px;
     color: #2953a4;
     margin-bottom: 4px;
     font-family: 'Noto Serif TC', '新細明體', serif;
@@ -81,7 +81,7 @@
 
 .announce-related-date {
     display: block;
-    font-size: 16px;
+    font-size: 20px;
     color: #2953a4;
     margin-bottom: 4px;
     font-family: 'Noto Serif TC', '新細明體', serif;
