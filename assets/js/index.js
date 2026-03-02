@@ -47,13 +47,30 @@ document.addEventListener('DOMContentLoaded', function () {
         return arr;
     }
 
-    /** 打亂某個容器內的子元素順序 */
+    /** 打亂某個容器內的子元素順序 (排除 fixed-cell) */
     function shuffleChildren(parent, selector) {
         if (!parent) return;
         var items = Array.from(parent.querySelectorAll(':scope > ' + selector));
         if (items.length <= 1) return;
-        shuffleArray(items);
-        items.forEach(function (item) {
+
+        var fixedItems = [];
+        var shuffleItems = [];
+        items.forEach(function (item, index) {
+            if (item.classList.contains('fixed-cell') || item.querySelector('.fixed-cell')) {
+                fixedItems.push({ item: item, index: index });
+            } else {
+                shuffleItems.push(item);
+            }
+        });
+
+        shuffleArray(shuffleItems);
+
+        fixedItems.sort(function (a, b) { return a.index - b.index; });
+        fixedItems.forEach(function (fi) {
+            shuffleItems.splice(fi.index, 0, fi.item);
+        });
+
+        shuffleItems.forEach(function (item) {
             parent.appendChild(item);
         });
     }

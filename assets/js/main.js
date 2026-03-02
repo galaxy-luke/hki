@@ -2,7 +2,7 @@
  * 虹光 LIVE 網站核心邏輯
  * 0. 進站 Loading Overlay（白底 + Logo + 載入中文字，頁面載入完後淡出）
  * 1. 公告輪播 — 下進上出垂直切換
- *    可調整 NOTICE_INTERVAL 變更顯示秒數（預設 15 秒）
+ *    可調整 NOTICE_INTERVAL 變更顯示秒數（預設 8 秒）
  */
 
 /* ===================================
@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (items.length <= 1) return;
 
     var currentIndex = 0;
-    var NOTICE_INTERVAL = 15000; // ← 每則公告顯示時間（毫秒），預設 15 秒
+    var NOTICE_INTERVAL = 8000; // ← 每則公告顯示時間（毫秒），預設 8 秒
 
     function switchNotice() {
         var current = items[currentIndex];
@@ -148,90 +148,120 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // === 手機版置底推播 (Mobile Sticky Announcement) ===
     if (document.querySelector('.mobile-announcement-swiper')) {
-        var mobileSwiperEl = document.querySelector('.mobile-announcement-swiper');
-        var mobileSwiperWrapper = mobileSwiperEl.querySelector('.swiper-wrapper');
-        var originalSlides = mobileSwiperWrapper.querySelectorAll('.swiper-slide');
+        var swiperContainer = document.querySelector('.mobile-announcement-swiper');
+        var originalLinks = swiperContainer.querySelectorAll('.swiper-slide:not(.swiper-slide-duplicate) .mobile-announcement-text');
 
-        // Swiper loop 需要足夠的 DOM 節點，若只有 2 則公告易觸發警告，自動複製成 4 則
-        if (originalSlides.length === 2) {
-            originalSlides.forEach(function (slide) {
-                mobileSwiperWrapper.appendChild(slide.cloneNode(true));
-            });
+        // 如果沒有抓到（可能因為先前腳本修改過 DOM），則嘗試抓取所有
+        if (originalLinks.length === 0) {
+            originalLinks = swiperContainer.querySelectorAll('.mobile-announcement-text');
         }
 
-        // 取得所有 mobile announcement 連結（此時若被複製，會一併抓取）
-        var mobileLinks = document.querySelectorAll('.mobile-announcement-text');
-
-        // 存放原始文字的陣列
-        var originalTexts = [];
-        mobileLinks.forEach(function (link, index) {
-            originalTexts[index] = link.textContent.trim();
+        // 取出所有連結資料
+        var linkData = [];
+        var seenTexts = new Set();
+        originalLinks.forEach(function (link) {
+            var text = link.innerHTML.trim();
+            // 避免因為 swiper duplicate 抓到重複的內容
+            if (!seenTexts.has(text)) {
+                seenTexts.add(text);
+                linkData.push({
+                    text: text,
+                    href: link.getAttribute('href') || '#'
+                });
+            }
         });
 
-        function truncateMobileAnnouncements() {
-            var containerWidth = window.innerWidth - 20; // 扣除左右 padding 各 10px
+        // 清空容器，改為純跑馬燈結構
+        swiperContainer.innerHTML = '';
 
-            // 建立一個隱藏的 span 來測量文字寬度
-            var measureContext = document.createElement('span');
-            measureContext.style.visibility = 'hidden';
-            measureContext.style.position = 'absolute';
-            measureContext.style.whiteSpace = 'nowrap';
-            measureContext.style.fontSize = '16px';
-            measureContext.style.fontFamily = "'Noto Sans TC', 'Microsoft JhengHei', serif";
-            document.body.appendChild(measureContext);
+        var marqueeWrap = document.createElement('div');
+        marqueeWrap.style.width = '100%';
+        marqueeWrap.style.height = '100%';
+        marqueeWrap.style.overflow = 'hidden';
+        marqueeWrap.style.position = 'relative';
+        marqueeWrap.style.display = 'flex';
+        marqueeWrap.style.alignItems = 'center';
 
-            mobileLinks.forEach(function (link, index) {
-                var fullText = originalTexts[index];
-                measureContext.textContent = fullText;
+        var marqueeTrack = document.createElement('div');
+        marqueeTrack.style.display = 'flex';
+        marqueeTrack.style.alignItems = 'center';
+        marqueeTrack.style.height = '100%';
+        marqueeTrack.style.whiteSpace = 'nowrap';
 
-                // 如果文字總寬度超過容器大小，就進行裁切
-                if (measureContext.offsetWidth > containerWidth) {
-                    var truncated = fullText;
-                    // 逐步縮短文字直到加上 '...' 後寬度小於容器
-                    while (truncated.length > 0) {
-                        truncated = truncated.slice(0, -1);
-                        measureContext.textContent = truncated + '...';
-                        if (measureContext.offsetWidth <= containerWidth) {
-                            break;
-                        }
-                    }
-                    link.textContent = truncated + '...';
-                } else {
-                    // 若沒有超過就顯示原文字
-                    link.textContent = fullText;
-                }
-            });
+        marqueeWrap.appendChild(marqueeTrack);
+        swiperContainer.appendChild(marqueeWrap);
 
-            document.body.removeChild(measureContext);
-        }
+        var currentMarqueeAnim = null;
 
-        // 首次執行裁切與綁定 resize 事件
-        truncateMobileAnnouncements();
-        window.addEventListener('resize', truncateMobileAnnouncements);
+        function buildMarquee() {
+            marqueeTrack.innerHTML = '';
+            var containerWidth = marqueeWrap.offsetWidth;
+            if (containerWidth === 0) return;
 
-        var finalSlideCount = mobileSwiperEl.querySelectorAll('.swiper-slide').length;
-        var mobileAnnouncementSwiperInstance = null;
+            // 使用者需求: 上一則跑完 1/3 後下一則進入，代表間距約為螢幕寬度的 2/3
+            var gapSpacing = Math.floor(containerWidth * 2 / 3);
+            if (gapSpacing < 20) gapSpacing = 20;
 
-        function handleMobileSwiperState() {
-            // 使用 offsetParent 判斷目前該元素是否正在顯示 (避開 display:none 報錯)
-            var isVisible = mobileSwiperEl.offsetParent !== null;
-
-            if (isVisible && !mobileAnnouncementSwiperInstance) {
-                mobileAnnouncementSwiperInstance = new Swiper('.mobile-announcement-swiper', {
-                    direction: 'vertical',
-                    loop: finalSlideCount > 2,
-                    autoplay: {
-                        delay: 3000,
-                        disableOnInteraction: false
-                    }
+            // 建立一組完整的公告群組
+            function createGroup() {
+                var group = document.createElement('div');
+                group.style.display = 'flex';
+                group.style.alignItems = 'center';
+                linkData.forEach(function (data) {
+                    var a = document.createElement('a');
+                    a.href = data.href;
+                    a.innerHTML = data.text;
+                    // 保留原本 class 的視覺設定
+                    a.className = 'mobile-announcement-text text-decoration-none';
+                    a.style.display = 'inline-block';
+                    a.style.paddingRight = gapSpacing + 'px';
+                    a.style.whiteSpace = 'nowrap';
+                    a.style.color = '#000';
+                    a.style.fontSize = '16px';
+                    // 覆蓋 padding 防止 base.css 的干擾，確保右方 padding 就是我們的 gapSpacing
+                    a.style.paddingLeft = '0px';
+                    group.appendChild(a);
                 });
-            } else if (!isVisible && mobileAnnouncementSwiperInstance) {
-                mobileAnnouncementSwiperInstance.destroy(true, true);
-                mobileAnnouncementSwiperInstance = null;
+                return group;
             }
+
+            var group1 = createGroup();
+            marqueeTrack.appendChild(group1);
+
+            var groupWidth = group1.offsetWidth;
+            if (groupWidth === 0) {
+                // 如果因為 display none 導致無寬度，延後重試
+                setTimeout(buildMarquee, 500);
+                return;
+            }
+
+            // 至少複製足夠的組數來填滿總寬度兩倍以達到無縫循環
+            var neededGroups = Math.ceil((containerWidth * 2) / groupWidth) + 1;
+            for (var i = 0; i < neededGroups; i++) {
+                marqueeTrack.appendChild(createGroup());
+            }
+
+            var speed = 72; // px per second (原 60 加快 20%)
+            var duration = (groupWidth / speed) * 1000;
+
+            if (currentMarqueeAnim) currentMarqueeAnim.cancel();
+
+            currentMarqueeAnim = marqueeTrack.animate([
+                { transform: 'translateX(0)' },
+                { transform: 'translateX(-' + groupWidth + 'px)' }
+            ], {
+                duration: duration,
+                iterations: Infinity,
+                easing: 'linear'
+            });
         }
 
-        handleMobileSwiperState();
-        window.addEventListener('resize', handleMobileSwiperState);
+        buildMarquee();
+        window.addEventListener('resize', function () {
+            if (currentMarqueeAnim) currentMarqueeAnim.cancel();
+            clearTimeout(window._marqueeResizeTimer);
+            window._marqueeResizeTimer = setTimeout(buildMarquee, 200);
+        });
     }
+
 });

@@ -10,10 +10,12 @@
     <link rel="stylesheet" href="plugins/fontawesome/css/all.min.css">
     <link rel="stylesheet" href="plugins/swiper/swiper-bundle.min.css">
 
-            <!-- Google Fonts -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&family=Noto+Serif+TC:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&family=Noto+Serif+TC:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
 
 
     <link rel="stylesheet" href="assets/css/header.css">
@@ -24,20 +26,46 @@
 
 <body>
     <!-- 進站 Loading Overlay -->
-    <div id="loadingOverlay" style="position:fixed;top:0;left:0;width:100%;height:100%;background:#fff;display:flex;align-items:center;justify-content:center;z-index:99999;transition:opacity 1s ease;opacity:1;">
+    <div id="loadingOverlay"
+        style="position:fixed;top:0;left:0;width:100%;height:100%;background:#fff;display:flex;align-items:center;justify-content:center;z-index:99999;transition:opacity 1s ease;opacity:1;">
         <style>
-            @keyframes hkiLoadingFade { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
-            .loading-dot { animation: hkiLoadingFade 1.5s ease-in-out infinite; }
-            #dot1 { animation-delay: -0.4s; }
-            #dot2 { animation-delay: -0.2s; }
-            #dot3 { animation-delay: 0s; }
+            @keyframes hkiLoadingFade {
+
+                0%,
+                100% {
+                    opacity: 1;
+                }
+
+                50% {
+                    opacity: 0.2;
+                }
+            }
+
+            .loading-dot {
+                animation: hkiLoadingFade 1.5s ease-in-out infinite;
+            }
+
+            #dot1 {
+                animation-delay: -0.4s;
+            }
+
+            #dot2 {
+                animation-delay: -0.2s;
+            }
+
+            #dot3 {
+                animation-delay: 0s;
+            }
         </style>
         <div style="display:flex;flex-direction:column;align-items:center;gap:20px;">
             <img src="assets/images/common/logo.png" alt="虹光LIVE" style="width:120px;height:auto;">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" style="width:50px;height:50px;">
-                <rect id="dot1" class="loading-dot" fill="#b2b2b2c9" stroke="#9b9b9b" stroke-width="2" width="30" height="30" x="25" y="85"></rect>
-                <rect id="dot2" class="loading-dot" fill="#b2b2b2c9" stroke="#9b9b9b" stroke-width="2" width="30" height="30" x="85" y="85"></rect>
-                <rect id="dot3" class="loading-dot" fill="#b2b2b2c9" stroke="#9b9b9b" stroke-width="2" width="30" height="30" x="145" y="85"></rect>
+                <rect id="dot1" class="loading-dot" fill="#b2b2b2c9" stroke="#9b9b9b" stroke-width="2" width="30"
+                    height="30" x="25" y="85"></rect>
+                <rect id="dot2" class="loading-dot" fill="#b2b2b2c9" stroke="#9b9b9b" stroke-width="2" width="30"
+                    height="30" x="85" y="85"></rect>
+                <rect id="dot3" class="loading-dot" fill="#b2b2b2c9" stroke="#9b9b9b" stroke-width="2" width="30"
+                    height="30" x="145" y="85"></rect>
             </svg>
         </div>
     </div>
@@ -158,13 +186,14 @@
              層級 2: Hero Banner 區 (左右兩欄各50%)
              ======================================== -->
         <section class="branch-banner-section">
-            <div class="row g-0">
+            <div class="row g-0 align-items-stretch">
                 <!-- 左側: 大直 -->
-                <div class="col-6">
-                    <div class="branch-banner-wrapper">
-                        <a href="dazhi.html" class="d-block text-decoration-none text-dark">
-                            <div class="branch-banner position-relative">
-                                <img src="assets/images/hero/hero-dazhi.png" class="img-fluid w-100" alt="虹光LIVE 大直">
+                <div class="col-6 d-flex flex-column">
+                    <div class="branch-banner-wrapper flex-grow-1 d-flex flex-column">
+                        <a href="dazhi.html" class="d-flex flex-column text-decoration-none text-dark h-100">
+                            <div class="branch-banner position-relative flex-grow-1 d-flex">
+                                <img src="assets/images/hero/hero-dazhi.png" class="img-fluid w-100"
+                                    style="object-fit: cover; height: 100%;" alt="虹光LIVE 大直">
                                 <!-- 大直描述文字覆蓋 (hover 顯示，僅桌機) -->
                                 <div class="hero-desc-overlay d-none d-lg-flex">
                                     位於劍南路捷運站旁，鄰近美麗華百貨與典華幸福大樓，高端住宅與商業人潮交會，是台北北區極具指標性的生活圈。以虹光集團自有建築資產打造，提供彈性租賃與客製化商業配置，吸引眾多優質品牌進駐。這裡結合精緻餐飲與質感生活風格，成為都會消費者探索品味日常的首選地標。
@@ -172,8 +201,8 @@
                             </div>
                         </a>
                         <!-- 下方: Google Map 顏色區塊連結 -->
-                        <a href="https://maps.google.com/?q=台北捷運大直站" target="_blank"
-                            class="hero-label hero-label-dazhi text-white text-decoration-none">
+                        <a href="https://maps.app.goo.gl/VgZi27cBnLJdQifs8" target="_blank"
+                            class="hero-label hero-label-dazhi text-white text-decoration-none mt-auto">
                             <span>虹光LIVE 大直</span>
                             <img src="assets/images/common/icon-pin.png" alt="pin" class="pin-icon">
                         </a>
@@ -181,11 +210,12 @@
                 </div>
 
                 <!-- 右側: 永康 -->
-                <div class="col-6">
-                    <div class="branch-banner-wrapper">
-                        <a href="yongkang.html" class="d-block text-decoration-none text-dark">
-                            <div class="branch-banner position-relative">
-                                <img src="assets/images/hero/hero-yongkang.png" class="img-fluid w-100" alt="虹光LIVE 永康">
+                <div class="col-6 d-flex flex-column">
+                    <div class="branch-banner-wrapper flex-grow-1 d-flex flex-column">
+                        <a href="yongkang.html" class="d-flex flex-column text-decoration-none text-dark h-100">
+                            <div class="branch-banner position-relative flex-grow-1 d-flex">
+                                <img src="assets/images/hero/hero-yongkang.png" class="img-fluid w-100"
+                                    style="object-fit: cover; height: 100%;" alt="虹光LIVE 永康">
                                 <!-- 永康描述文字覆蓋 (hover 顯示，僅桌機) -->
                                 <div class="hero-desc-overlay d-none d-lg-flex">
                                     座落東門捷運站旁，串聯永康街觀光、美食與文化氛圍，深受國內外高消費客群青睞。虹光集團以獨有建築空間規劃，量身打造品牌營運所需，助力商家在文青慢活街區中精準吸引目標族群。永康館已成為結合特色選品與餐飲的風格據點，與街區共生共榮。
@@ -193,8 +223,8 @@
                             </div>
                         </a>
                         <!-- 下方: Google Map 顏色區塊連結 -->
-                        <a href="https://maps.google.com/?q=台北捷運永康站" target="_blank"
-                            class="hero-label hero-label-yongkang text-white text-decoration-none">
+                        <a href="https://maps.app.goo.gl/g35e3djGmnne46taA" target="_blank"
+                            class="hero-label hero-label-yongkang text-white text-decoration-none mt-auto">
                             <span>虹光LIVE 永康</span>
                             <img src="assets/images/common/icon-pin.png" alt="pin" class="pin-icon">
                         </a>
@@ -613,7 +643,7 @@
                                         </div>
                                     </div>
                                     <div class="col-4">
-                                        <div class="brand-cell brand-cell-mobile">
+                                        <div class="brand-cell brand-cell-mobile fixed-cell">
                                             <a href="javascript:void(0)"
                                                 class="brand-link text-decoration-none d-block w-100 h-100 cursor-default">
                                                 <div class="flip-card">
@@ -1157,12 +1187,12 @@
         <div class="swiper mobile-announcement-swiper h-100">
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
-                    <a href="announcement.html" class="mobile-announcement-text text-decoration-none">
-                        最新公告：因應捷運北環段施工，北安路往敬業二路之路口封閉，請前往大樓之開車顧客注意交通指示
+                    <a href="announcement.html?id=1" class="mobile-announcement-text text-decoration-none">
+                        最新公告：因應捷運北環段施工，北安路往敬業二路之路口封閉，請前往大樓之開車顧客注意交通指示。
                     </a>
                 </div>
                 <div class="swiper-slide">
-                    <a href="announcement.html" class="mobile-announcement-text text-decoration-none">
+                    <a href="announcement.html?id=2" class="mobile-announcement-text text-decoration-none">
                         虹光 LIVE 永康：週末生活藝術節即將開幕，歡迎蒞臨參觀！
                     </a>
                 </div>
@@ -1172,6 +1202,3 @@
 </body>
 
 </html>
-
-
-
