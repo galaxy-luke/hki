@@ -311,3 +311,32 @@
         margin: 20px 0;
     }
 }
+
+/* --- More 按鈕樣式同步 (與 index.html 一致) --- */
+.more-btn {
+    background: #fff;
+    color: #000;
+    border: none;
+    padding-top: 0 !important;
+    padding-bottom: .1rem !important;
+}
+
+.more-btn {
+    font-size: 0.85rem;
+}
+
+@media (min-width: 992px) {
+    .more-btn {
+        font-size: 1rem;
+    }
+}
+
+/* 新聞區輔助樣式同步 */
+.news-section .badge {
+    box-shadow: none !important;
+}
+
+.news-section .card-body,
+.news-section .card-body .text-secondary {
+    color: #000 !important;
+}
