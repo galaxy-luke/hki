@@ -58,6 +58,92 @@
     line-height: 2;
 }
 
+/* --- 附件下載區塊 --- */
+.announce-downloads {
+    margin: 28px 0;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+}
+
+.announce-downloads-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #2953a4;
+    margin-bottom: 14px;
+    font-family: 'Noto Serif TC', '新細明體', serif;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.announce-downloads-title i {
+    font-size: 20px;
+}
+
+.announce-downloads-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+}
+
+.announce-download-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    background: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    text-decoration: none;
+    color: #333;
+    transition: all 0.25s ease;
+    font-family: 'Noto Sans TC', "Microsoft JhengHei", "微軟正黑體", sans-serif;
+    font-size: 13px;
+}
+
+.announce-download-btn:hover {
+    background: #ebebeb;
+    color: #333;
+    border-color: #ccc;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+}
+
+.announce-download-icon {
+    font-size: 22px;
+    flex-shrink: 0;
+    transition: color 0.25s ease;
+}
+
+.announce-download-icon.pdf {
+    color: #dc3545;
+}
+
+.announce-download-icon.zip {
+    color: #e67e22;
+}
+
+.announce-download-icon.doc {
+    color: #2b5797;
+}
+
+.announce-download-icon.ppt {
+    color: #d04423;
+}
+
+.announce-download-icon.other {
+    color: #6c757d;
+}
+
+.announce-download-name {
+    flex: 1;
+    word-break: break-all;
+    line-height: 1.4;
+}
+
 /* --- 相關公告列表 --- */
 .announce-related-list {
     margin-top: 40px;
@@ -95,6 +181,24 @@
 }
 
 /* =============================================
+   RWD — 下載區塊斷點
+   ============================================= */
+
+/* ≤1199px → 4 欄 */
+@media (max-width: 1199.98px) {
+    .announce-downloads-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* ≤991px → 3 欄 */
+@media (max-width: 991.98px) {
+    .announce-downloads-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* =============================================
    RWD — 手機版調整
    ============================================= */
 @media (max-width: 767.98px) {
@@ -120,11 +224,56 @@
         line-height: 1.7;
     }
 
+    /* 下載區塊 ≤767px → 2 欄 */
+    .announce-downloads {
+        padding: 14px;
+        margin: 20px 0;
+    }
+
+    .announce-downloads-title {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    .announce-downloads-title i {
+        font-size: 17px;
+    }
+
+    .announce-downloads-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+
+    .announce-download-btn {
+        padding: 8px 10px;
+        font-size: 12px;
+    }
+
+    .announce-download-icon {
+        font-size: 20px;
+    }
+
     .announce-related-date {
         font-size: 14px;
     }
 
     .announce-related-title {
         font-size: 18px;
+    }
+}
+
+/* ≤575px → 1 欄 */
+@media (max-width: 575.98px) {
+    .announce-downloads-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .announce-download-btn {
+        padding: 10px 12px;
+        font-size: 13px;
+    }
+
+    .announce-download-icon {
+        font-size: 22px;
     }
 }
